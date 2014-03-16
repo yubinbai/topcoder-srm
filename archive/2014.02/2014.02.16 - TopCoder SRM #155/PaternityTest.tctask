@@ -1,0 +1,88 @@
+13 PaternityTest
+15 possibleFathers
+5 int[]
+3
+16 java.lang.String
+5 child
+16 java.lang.String
+6 mother
+18 java.lang.String[]
+3 men
+5
+0
+3
+String
+4 ABCD
+String
+4 AXCY
+String[] 2
+4 SBTD
+4 QRCD
+int[] 1
+0
+1
+1
+3
+String
+4 ABCD
+String
+4 ABCX
+String[] 3
+4 ABCY
+4 ASTD
+4 QBCD
+int[] 2
+1
+2
+1
+2
+3
+String
+6 ABABAB
+String
+6 ABABAB
+String[] 4
+6 ABABAB
+6 ABABCC
+6 ABCCDD
+6 CCDDEE
+int[] 2
+0
+1
+1
+3
+3
+String
+8 YZGLSYQT
+String
+8 YUQRWYQT
+String[] 5
+8 YZQLDPWT
+8 BZELSWQM
+8 OZGPSFKT
+8 GZTKFYQT
+8 WQJLSMQT
+int[] 0
+1
+4
+3
+String
+20 WXETPYCHUWSQEMKKYNVP
+String
+20 AXQTUQVAUOSQEEKCYNVP
+String[] 5
+20 WNELPYCHXWXPCMNKDDXD
+20 WFEEPYCHFWDNPMKKALIW
+20 WSEFPYCHEWEFGMPKIQCK
+20 WAEXPYCHAWEQXMSKYARN
+20 WKEXPYCHYWLLFMGKKFBB
+int[] 2
+1
+3
+1
+10 2014.02.16
+17 TopCoder SRM #155
+0
+22 topcoder.PaternityTest
+0
+3 64M

@@ -8,7 +8,14 @@ public class FixedDiceGameDiv2
 {
 	public double getExpectation(int a, int b)
 	{
-		
+		long w = 0, c = 0;
+		for (int ia = 2; ia <= a; ia++) {
+			for (int ib = 1; ib <= Math.min(b, ia - 1); ib++) {
+				w += ia;
+				c++;
+			}
+		}
+		return 1.0 * w / c;
 	}
 	
 	public static void main(String[] args)

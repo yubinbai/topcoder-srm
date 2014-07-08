@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<jnlp spec="1.0+" codebase="http://www.topcoder.com/contest/arena/" href="ContestAppletProd.jnlp">
+   <information> 
+      <title>Competition Arena</title> 
+      <vendor>TopCoder, Inc.</vendor> 
+      <homepage href="http://www.topcoder.com"/> 
+      <description>TopCoder Contest Arena</description> 
+      <icon href="http://www.topcoder.com/images/favicon_new.gif"/> 
+   </information> 
+   <security>
+      <all-permissions/>
+   </security>
+   <resources> 
+      <j2se version="1.4+" max-heap-size="128m"/> 
+      <jar href="http://cdn.topcoder.com/arena/20140410/arena-client-7.1.1.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/basic_type_serialization-1.0.1.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/client-socket-1.1.1.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/concurrent-1.0.2.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/encoder-1.0.0.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/logging-1.1.0.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/arena-shared-7.5.4.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/client-common-1.2.0.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/compeng-common-1.2.1.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/custom-serialization-1.1.0.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/http-tunnel-client-1.1.0.jar" />
+      <jar href="http://cdn.topcoder.com/arena/20140410/log4j-1.2.13.jar" />
+   </resources> 
+   
+   
+   <application-desc main-class="com.topcoder.client.contestApplet.runner.generic"> 
+      <argument>www.topcoder.com</argument>
+      <argument>5001</argument>
+      <argument>http://tunnel1.topcoder.com/tunnel?dummy</argument>
+      <argument>TopCoder</argument>
+   </application-desc>
+</jnlp>

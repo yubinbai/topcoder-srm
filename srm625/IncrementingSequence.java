@@ -11,12 +11,15 @@ public class IncrementingSequence {
         for (int i = 0; i < A.length; i++) {
             temp[i] = i + 1;
         }
+        // O ( n * nlog_n )
         for (int i = 0; i < A.length; i++) {
             if (A[i] < temp[i]) {
+                // definitely need to increase it since we cannot have A[i] < i + 1
                 while (A[i] < temp[i]) {
                     A[i] += k;
                 }
                 if (A[i] > temp[i]) {
+                    // rearrange to find the smallest at current position
                     Arrays.sort(A);
                     i--;
                 }

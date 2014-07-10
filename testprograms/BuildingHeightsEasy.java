@@ -8,8 +8,18 @@ public class BuildingHeightsEasy
 {
 	public int minimum(int M, int[] heights)
 	{
-		
-	}
+		Arrays.sort(heights);
+        int ret = Integer.MAX_VALUE;
+        for (int i = heights.length - 1;i>= M - 1; i--) {
+            int curr = heights[i];
+            int cost = 0;
+            for (int j = 0; j < M; j++) {
+                cost += curr - heights[i - j];
+            }
+            ret = Math.min(ret, cost);
+        }
+        return ret;
+    }
 	
 	public static void main(String[] args)
 	{

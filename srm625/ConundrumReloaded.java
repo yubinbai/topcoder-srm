@@ -14,12 +14,11 @@ public class ConundrumReloaded {
             if (c == '?') qCount++;
         }
         if (qCount == n) return 0;
-        int ret = n;
         if (qCount == 0) {
             for (int i = 0; i < n - 1; ++i) {
                 isL[i + 1] = isL[i] ^ (ansc[i] == 'L');
             }
-            if (isL[0] ^ (ansc[n - 1] == 'L')) {
+            if ( (isL[n - 1] ^ (ansc[n - 1] == 'L')) != isL[0] ) {
                 return -1;
             } else {
                 int cnt = 0;
@@ -29,7 +28,21 @@ public class ConundrumReloaded {
                 return Math.min(cnt, n - cnt);
             }
         }
-        return n;
+        int start = 0;
+        while (!(ansc[start % n] == '?' && ansc[(start + 1) % n] != '?')) start++;
+        int ret = 0;
+        for (int i = start; i < start + n; ++i) {
+            int currLen = 1, currCost = 0;
+            boolean curr = true;
+            while (ansc[(i + 1) % n] != '?' && i < start + n) {
+                curr ^= (ansc[(i + 1) % n] == 'L');
+                if (!curr) currCost++;
+                currLen++;
+                i++;
+            }
+            ret += Math.min(currCost, currLen - currCost);
+        }
+        return ret;
     }
 
     public static void main(String[] args) {
@@ -40,7 +53,7 @@ public class ConundrumReloaded {
 
 
         time = System.currentTimeMillis();
-        answer = new ConundrumReloaded().minimumLiars("LLH");
+        answer = new ConundrumReloaded().minimumLiars("LHL");
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = 1;
         System.out.println("Your answer:");

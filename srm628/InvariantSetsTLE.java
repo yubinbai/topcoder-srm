@@ -5,41 +5,33 @@ import java.math.*;
 
 
 public class InvariantSets {
-
-    public long countSets(int[] f) {
-        int n = f.length;
-        int[] indegree = new int[n];
-        long[] sum = new long[n];
-        for (int i : f) {
-            indegree[i]++;
-        }
-        Arrays.fill(sum, 1);
-        Queue<Integer> q = new ArrayDeque<Integer>();
-        for (int i = 0; i < n; i++) {
-            if (indegree[i] == 0) q.add(i);
-        }
-
-        long result = 1;
-        boolean[] dead = new boolean[n];
-        while (!q.isEmpty()) {
-            int now = q.poll();
-            dead[now] = true;
-            sum[f[now]] *= (sum[now] + 1);
-            if (indegree[f[now]] == 0) q.add(f[now]);
-        }
-        for (int i = 0; i < n; i++) {
-            if (!dead[i]) {
-                long product = 1;
-                int now = i;
-                while (!dead[now]) {
-                    dead[now] = true;
-                    product *= sum[now];
-                    now = f[now];
-                }
-                result *= (product + 1);
+    int n;
+    long ret;
+    int[] f;
+    boolean[] curr;
+    private void count(int step) {
+        boolean flag = true;;
+        for (int i = 0; i < step; i++) {
+            if (curr[i] && !curr[f[i]]) {
+                flag = false;
+                break;
             }
         }
-        return result;
+        if (flag) ret++;
+        for (int i = step; i < n; i++) {
+            curr[i] = true;
+            count(i + 1);
+            curr[i] = false;
+        }
+    }
+
+    public long countSets(int[] f) {
+        this.ret = 0;
+        this.n = f.length;
+        this.f = f;
+        curr = new boolean[n];
+        count(0);
+        return this.ret;
     }
 
     // BEGIN KAWIGIEDIT TESTING

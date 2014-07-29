@@ -7,12 +7,13 @@ import java.math.*;
 public class InvariantSets {
 
     public long countSets(int[] f) {
+
         int n = f.length;
         int[] indegree = new int[n];
-        long[] sum = new long[n];
         for (int i : f) {
             indegree[i]++;
         }
+        long[] sum = new long[n];
         Arrays.fill(sum, 1);
         Queue<Integer> q = new ArrayDeque<Integer>();
         for (int i = 0; i < n; i++) {
@@ -24,9 +25,11 @@ public class InvariantSets {
         while (!q.isEmpty()) {
             int now = q.poll();
             dead[now] = true;
+            indegree[f[now]]--;
             sum[f[now]] *= (sum[now] + 1);
             if (indegree[f[now]] == 0) q.add(f[now]);
         }
+
         for (int i = 0; i < n; i++) {
             if (!dead[i]) {
                 long product = 1;

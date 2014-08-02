@@ -5,7 +5,12 @@ import java.math.*;
 
 
 public class MixingColors {
+
     public static int minColors(int[] colors) {
+        // 1. the largest number has a bit that's not in others
+        // 2. use all bits in largest number to reduce others by xor
+        // 3. sort all numbers
+        // 4. repeat 1 until all zero
         int count = 0;
         Arrays.sort(colors);
         while (colors[colors.length - 1] != 0) {

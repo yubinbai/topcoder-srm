@@ -12,12 +12,10 @@ public class ChooseTheBestOne {
         }
         int curr = 0;
         for (int round = 1; round < N; ++round) {
-        	BigInteger move = BigInteger.ONE;
-        	BigInteger R = new BigInteger(Integer.toString(round));
-        	move = move.multiply(R).multiply(R).multiply(R).subtract(BigInteger.ONE);
-            move = move.mod(new BigInteger(Integer.toString(circ.size())));
+            long move = 1L * round * round * round - 1;
+            move %= circ.size();
 
-            curr += move.intValue();
+            curr += (int) move;
             curr %= circ.size();
 
             circ.remove(curr);

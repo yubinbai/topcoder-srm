@@ -16,16 +16,8 @@ class PrimeFactors {
     }
 
     public static void main(String[] args) {
-        System.out.println("Primefactors of 44");
-        for (Integer integer : primeFactors(44)) {
-            System.out.println(integer);
-        }
-        System.out.println("Primefactors of 3");
-        for (Integer integer : primeFactors(3)) {
-            System.out.println(integer);
-        }
-        System.out.println("Primefactors of 577007436");
-        for (Integer integer : primeFactors(577007436)) {
+        System.out.println("Primefactors of " + args[0]);
+        for (Integer integer : primeFactors(new Integer(args[0]))) {
             System.out.println(integer);
         }
     }

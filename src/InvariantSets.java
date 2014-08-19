@@ -16,19 +16,24 @@ public class InvariantSets {
             indegree[i]++;
         }
         Arrays.fill(sum, 1);
+
+        // reduce graph to circles
         Queue<Integer> q = new ArrayDeque<Integer>();
         for (int i = 0; i < n; i++) {
             if (indegree[i] == 0) q.add(i);
         }
 
+        // multiply to nodes on circles
         long result = 1;
         boolean[] dead = new boolean[n];
         while (!q.isEmpty()) {
             int now = q.poll();
             dead[now] = true;
             sum[f[now]] *= (sum[now] + 1);
+            indegree[f[now]]--;
             if (indegree[f[now]] == 0) q.add(f[now]);
         }
+        // self-circle and multi-circles
         for (int i = 0; i < n; i++) {
             if (!dead[i]) {
                 long product = 1;

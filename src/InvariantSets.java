@@ -3,7 +3,9 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * SRM 628 1000 pt
+ */
 public class InvariantSets {
 
     public long countSets(int[] f) {

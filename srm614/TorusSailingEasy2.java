@@ -5,6 +5,14 @@ import java.math.*;
 
 
 public class TorusSailingEasy2 {
+    /**
+     * backward making expectations, worth remembering
+     * @param  N     [description]
+     * @param  M     [description]
+     * @param  goalX [description]
+     * @param  goalY [description]
+     * @return       [description]
+     */
     public double expectedTime(int N, int M, int goalX, int goalY) {
         double r = 0.0;
         double[][][] e = new double[2][12][12];

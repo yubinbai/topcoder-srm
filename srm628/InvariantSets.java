@@ -3,33 +3,37 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * SRM 628 1000 pt
+ */
 public class InvariantSets {
 
     public long countSets(int[] f) {
-
         int n = f.length;
         int[] indegree = new int[n];
+        long[] sum = new long[n];
         for (int i : f) {
             indegree[i]++;
         }
-        long[] sum = new long[n];
         Arrays.fill(sum, 1);
+
+        // reduce graph to circles
         Queue<Integer> q = new ArrayDeque<Integer>();
         for (int i = 0; i < n; i++) {
             if (indegree[i] == 0) q.add(i);
         }
 
+        // multiply to nodes on circles
         long result = 1;
         boolean[] dead = new boolean[n];
         while (!q.isEmpty()) {
             int now = q.poll();
             dead[now] = true;
-            indegree[f[now]]--;
             sum[f[now]] *= (sum[now] + 1);
+            indegree[f[now]]--;
             if (indegree[f[now]] == 0) q.add(f[now]);
         }
-
+        // self-circle and multi-circles
         for (int i = 0; i < n; i++) {
             if (!dead[i]) {
                 long product = 1;

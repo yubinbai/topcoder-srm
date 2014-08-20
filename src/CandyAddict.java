@@ -17,6 +17,7 @@ public class CandyAddict {
         return ret;
     }
 
+    // haven't figured out
     public long calc(int x, int y, int z) {
     	long ret = 1L * x * z;
     	if (x > y) {

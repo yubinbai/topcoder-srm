@@ -5,7 +5,8 @@ import java.math.*;
 
 
 public class PowersOfTwo {
-    int[] cnt = new int[52];
+    // consider edge cases where you have multiple 2^52
+    int[] cnt = new int[72];
     public long count(long[] powers) {
         for (long p : powers ) {
             for (int i = 0; i < 51; ++i) {
@@ -16,7 +17,7 @@ public class PowersOfTwo {
     }
 
     private long recur(int step) {
-        if (step == 51) return (cnt[51] == 1) ? 2L : 1L;
+        if (step == 71) return (cnt[71] == 1) ? 2L : 1L;
         if (cnt[step] == 0) return recur(step + 1);
         if (cnt[step] == 1) return recur(step + 1) * 2L;
         long ret = 0;
@@ -84,8 +85,8 @@ public class PowersOfTwo {
         long p1;
 
         // ----- test 0 -----
-        p0 = new long[] {1L, 2L};
-        p1 = 4L;
+        p0 = new long[] {562949953421312L, 131072L, 274877906944L, 16777216L, 281474976710656L, 8796093022208L, 17179869184L, 17179869184L, 262144L, 16L, 8589934592L, 274877906944L, 2097152L, 1125899906842624L, 262144L, 1125899906842624L, 1125899906842624L, 274877906944L, 1024L, 536870912L, 274877906944L, 274877906944L, 8589934592L, 281474976710656L, 562949953421312L, 2097152L, 16L, 281474976710656L, 131072L, 2147483648L, 536870912L, 1125899906842624L, 2147483648L, 562949953421312L, 17179869184L, 17179869184L, 2199023255552L, 16L, 4096L, 16L, 281474976710656L, 562949953421312L, 16L, 17592186044416L, 8388608L, 33554432L, 536870912L, 16L, 4096L, 32L};
+        p1 = 1666925568L;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 

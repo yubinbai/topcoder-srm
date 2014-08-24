@@ -10,6 +10,7 @@ public class ElephantDrinkingEasy {
     int ret = 0;
     char[][] curr;
     ArrayList<Integer> waterI, waterJ;
+
     public int maxElephants(String[] map) {
         n = map.length;
         curr = new char[n][n];
@@ -26,95 +27,104 @@ public class ElephantDrinkingEasy {
                 }
             }
         }
-        test(0, 0);
+        test(0);
         return ret;
     }
 
-    private void test(int step, int direction) {
+    private void test(int step) {
         ret = Math.max(ret, num);
         if (step == waterI.size()) return;
         int i = waterI.get(step), j = waterJ.get(step);
+        char[] track = new char[10];
         if (curr[i][j] == 'Y') {
-            ArrayList<Character> track = new ArrayList<Character>();
-            boolean ok = true;
-            switch (direction) {
+            boolean ok;
             // up
-            case 0:
-                for (int ii = i; ii >= 0; ii--) {
-                    if (curr[ii][j] != 'X') track.add(curr[ii][j]);
-                    else ok = false;
+            ok = true;
+            for (int ii = i; ii >= 0; ii--) {
+                if (curr[ii][j] != 'X') track[ii] = curr[ii][j];
+                else {
+                    ok = false;
+                    break;
                 }
-                if (ok) {
-                    for (int ii = i; ii >= 0; ii--) {
-                        curr[ii][j] = 'X';
-                    }
-                    num++;
-                    test(step + 1, 0);
-                    for (int ii = i; ii >= 0; ii--) {
-                        curr[ii][j] = track.get(i - ii);
-                    }
-                    num--;
-                }
-                break;
-            // left
-            case 1:
-                for (int jj = j; jj >= 0; jj--) {
-                    if (curr[i][jj] != 'X') track.add(curr[i][jj]);
-                    else ok = false;
-                }
-                if (ok) {
-                    for (int jj = j; jj >= 0; jj--) {
-                        curr[i][jj] = 'X';
-                    }
-                    num++;
-                    test(step + 1, 0);
-                    for (int jj = j; jj >= 0; jj--) {
-                        curr[i][jj] = track.get(j - jj);
-                    }
-                    num--;
-                }
-                break;
-            // down
-            case 2:
-                for (int ii = i; ii < n; ii++) {
-                    if (curr[ii][j] != 'X') track.add(curr[ii][j]);
-                    else ok = false;
-                }
-                if (ok) {
-                    for (int ii = i; ii < n; ii++) {
-                        curr[ii][j] = 'X';
-                    }
-                    num++;
-                    test(step + 1, 0);
-                    for (int ii = i; ii < n; ii++) {
-                        curr[ii][j] = track.get(ii - i);
-                    }
-                    num--;
-                }
-                break;
-            // right
-            case 3:
-                for (int jj = j; jj < n; jj++) {
-                    if (curr[i][jj] != 'X') track.add(curr[i][jj]);
-                    else ok = false;
-                }
-                if (ok) {
-                    for (int jj = j; jj < n; jj++) {
-                        curr[i][jj] = 'X';
-                    }
-                    num++;
-                    test(step + 1, 0);
-                    for (int jj = j; jj < n; jj++) {
-                        curr[i][jj] = track.get(jj - j);
-                    }
-                    num--;
-                }
-                break;
             }
-            if (!ok && direction + 1 < 4) test(step, direction + 1);
-            test(step + 1, 0);
+            if (ok) {
+                for (int ii = i; ii >= 0; ii--) {
+                    curr[ii][j] = 'X';
+                }
+                num++;
+                test(step + 1);
+                for (int ii = i; ii >= 0; ii--) {
+                    curr[ii][j] = track[ii];
+                }
+                num--;
+            }
+
+            // left
+            ok = true;
+            for (int jj = j; jj >= 0; jj--) {
+                if (curr[i][jj] != 'X') track[jj] = curr[i][jj];
+                else {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                for (int jj = j; jj >= 0; jj--) {
+                    curr[i][jj] = 'X';
+                }
+                num++;
+                test(step + 1);
+                for (int jj = j; jj >= 0; jj--) {
+                    curr[i][jj] = track[jj];
+                }
+                num--;
+            }
+
+            // down
+            ok = true;
+            for (int ii = i; ii < n; ii++) {
+                if (curr[ii][j] != 'X') track[ii] = curr[ii][j];
+                else {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                for (int ii = i; ii < n; ii++) {
+                    curr[ii][j] = 'X';
+                }
+                num++;
+                test(step + 1);
+                for (int ii = i; ii < n; ii++) {
+                    curr[ii][j] = track[ii];
+                }
+                num--;
+            }
+
+            // right
+            ok = true;
+            for (int jj = j; jj < n; jj++) {
+                if (curr[i][jj] != 'X') track[jj] = curr[i][jj];
+                else {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                for (int jj = j; jj < n; jj++) {
+                    curr[i][jj] = 'X';
+                }
+                num++;
+                test(step + 1);
+                for (int jj = j; jj < n; jj++) {
+                    curr[i][jj] = track[jj];
+                }
+                num--;
+            }
         }
+        test(step + 1);
     }
+
 
     // BEGIN KAWIGIEDIT TESTING
     // Generated by KawigiEdit 2.1.8 (beta) modified by pivanof
@@ -167,8 +177,8 @@ public class ElephantDrinkingEasy {
         int p1;
 
         // ----- test 0 -----
-        p0 = new String[] {"NNNNN", "NNYYN", "NYNNN", "NNYNN", "NNNNN"};
-        p1 = 4;
+        p0 = new String[] {"YYYY", "YNYN", "YNYN", "NYYN"};
+        p1 = 10;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 

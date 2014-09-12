@@ -3,7 +3,9 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * SRM 610 DIV 2
+ */
 public class MiningGoldEasy
 {
 	public int GetMaximumGold(int N, int M, int[] event_i, int[] event_j)

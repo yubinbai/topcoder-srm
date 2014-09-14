@@ -1,3 +1,8 @@
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ * @author Yubin Bai
+ */
 public class OneDimensionalRobotEasy {
     public int finalPosition(String commands, int A, int B) {
         int curr = 0;

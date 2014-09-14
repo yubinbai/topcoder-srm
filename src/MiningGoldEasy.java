@@ -8,10 +8,25 @@ import java.math.*;
  */
 public class MiningGoldEasy {
     int e;
-    int[][][] dp = new int[55][55][55];
+    int[][][] dp;
     int[] event_i, event_j;
+    /**
+     * Analysls:
+     *     positions are restrained to (row, col) that have events happening.
+     *     Other position are not possible to have optimized result (why?)
+     *     This reduces the 10 ^ 6 matrix size to 50
+     *
+     *     After this observation, follow the regular steps for DP.
+     *
+     * @param  N       [description]
+     * @param  M       [description]
+     * @param  event_i [description]
+     * @param  event_j [description]
+     * @return         [description]
+     */
     public int GetMaximumGold(int N, int M, int[] event_i, int[] event_j) {
         this.e = event_i.length;
+        this.dp = new int[55][55][55];
         this.event_i = event_i;
         this.event_j = event_j;
         for (int i = 0; i < e; ++i) {
@@ -41,7 +56,6 @@ public class MiningGoldEasy {
             res = Math.min(res, add + solve(i, z, p + 1));
         }
         return dp[i][j][p] = res;
-
     }
 
     // BEGIN KAWIGIEDIT TESTING

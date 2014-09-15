@@ -38,6 +38,7 @@ public class MiningGoldEasy {
         int ret = Integer.MAX_VALUE;
         for (int i = 0; i < e; ++i) {
             for (int j = 0; j < e; ++j) {
+                // (event_i[i], event_j[j]) is the current position
                 ret = Math.min(ret, solve(i, j, 0));
             }
         }
@@ -49,6 +50,8 @@ public class MiningGoldEasy {
         if (dp[i][j][p] != -1) return dp[i][j][p];
         int res = Integer.MAX_VALUE;
         int add = Math.abs(event_i[p] - event_i[i]) + Math.abs(event_j[p] - event_j[j]);
+
+        // enumerate all possible postions from curr
         for (int z = 0; z < e; ++z) {
             // move vertically
             res = Math.min(res, add + solve(z, j, p + 1));

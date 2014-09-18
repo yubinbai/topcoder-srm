@@ -3,7 +3,9 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * SRM 607
+ */
 public class CombinationLockDiv2 {
     int N, MaxP;
     int[] diff;

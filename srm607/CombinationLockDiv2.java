@@ -5,6 +5,11 @@ import java.math.*;
 
 /**
  * SRM 607
+ * if a question is too large to search by brute force
+ * one must be thinking about searching in a wrong space
+ *
+ * if that still doesn't fix the size issue, the problem should be 
+ * able to get solved by DP
  */
 public class CombinationLockDiv2 {
     int N, MaxP;

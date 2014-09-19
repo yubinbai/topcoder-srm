@@ -35,6 +35,7 @@ public class EllysCandyGame
 				a[i] = 0;
 
 				int result = solve(step + 1, !isElly);
+				// Do not return in middle, that breaks the backtrack
                 if (result > 0) hasWinning = true;
 				if (result == 0) hasDraw = true;
 				if (result < 0) hasLosing = true;

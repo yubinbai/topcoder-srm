@@ -36,23 +36,25 @@ public class CandyAddict {
 
     // try to improve, circle finding?
     public long calc2(int x, int y, int z) {
+        if (x == y) return 0;
         long cash = 0;
         long candy = 0;
-        for (int i = 0; i < z; ++i) {
-            cash += x;
-            if (candy == 0) {
-                candy = cash / y;
-                cash = cash % y;
+        long day = 0;
+        long repDays = 1;
+        long cashLeft = 0;
 
-                if (i + candy < z) {
-                    i += candy;
-                    cash += candy * x;
-                    // cash -= x;
-                    candy = 0;
+        while (true) {
+            cash = cashLeft + repDays * x;
+            repDays = cash / y;
+            cashLeft = cash % y;
+            if (day + repDays > z) {
+                if (day == 0) {
+                    return cashLeft + (z - 1) * x;
+                } else {
+                    return cashLeft + (z - 1 - day) * x;
                 }
             }
         }
-        return cash;
     }
 
     // BEGIN KAWIGIEDIT TESTING

@@ -12,34 +12,47 @@ public class CandyAddict {
         long[] ret = new long[cases];
         for (int caseNo = 0; caseNo < cases; ++caseNo) {
             int x = X[caseNo], y = Y[caseNo], z = Z[caseNo];
-            ret[caseNo] = calc(x, y, z);
+            ret[caseNo] = calc2(x, y, z);
         }
         return ret;
     }
 
-    // haven't figured out
+    // dumb simulation
     public long calc(int x, int y, int z) {
-    	long ret = 1L * x * z;
-    	if (x > y) {
-
-    	} else if (x < y) {
-
-    	} else {
-    		ret = 0;
-    	}
-        return ret;
+        long cash = 0;
+        long candy = 0;
+        for (int i = 0; i < z; ++i) {
+            cash += x;
+            if (candy == 0) {
+                candy = cash / y;
+                cash = cash % y;
+            }
+            if (candy > 0) {
+                candy--;
+            } 
+        }
+        return cash;
     }
 
-    public long lcm(int a, int b) {
-    	return 1L * a * b / gcd(a, b);
-    }
+    // try to improve, circle finding?
+    public long calc2(int x, int y, int z) {
+        long cash = 0;
+        long candy = 0;
+        for (int i = 0; i < z; ++i) {
+            cash += x;
+            if (candy == 0) {
+                candy = cash / y;
+                cash = cash % y;
 
-    public int gcd(int a, int b) {
-    	if (b != 0) {
-    		return gcd(b, a % b);
-    	} else {
-    		return a;
-    	}
+                if (i + candy < z) {
+                    i += candy;
+                    cash += candy * x;
+                    // cash -= x;
+                    candy = 0;
+                }
+            }
+        }
+        return cash;
     }
 
     // BEGIN KAWIGIEDIT TESTING

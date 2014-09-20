@@ -5,14 +5,21 @@ import java.math.*;
 
 /**
  * SRM 629 div2 1000 pt
+ *
+ * The case for cyclic purchase is not complete
  */
+
 public class CandyAddict {
     public long[] solve(int[] X, int[] Y, int[] Z) {
         int cases = X.length;
         long[] ret = new long[cases];
         for (int caseNo = 0; caseNo < cases; ++caseNo) {
             int x = X[caseNo], y = Y[caseNo], z = Z[caseNo];
-            ret[caseNo] = calc2(x, y, z);
+            if (x == y) {
+                ret[caseNo] = 0;
+            } else {
+                ret[caseNo] = (x / (x - y) > 100) ? calc3(x, y, z) : calc2(x, y, z);
+            }
         }
         return ret;
     }
@@ -36,7 +43,6 @@ public class CandyAddict {
 
     // try to improve, candy purchase is huge
     public long calc2(int x, int y, int z) {
-        if (x == y) return 0;
         long cash = x;
         long candy = 0;
         long day = 0;
@@ -56,20 +62,33 @@ public class CandyAddict {
 
     // try to improve, candy purchase is tiny
     public long calc3(int x, int y, int z) {
-        if (x == y) return 0;
-        long cash = x;
-        long candy = 0;
+        long cash = 0;
+        long candy;
         long day = 0;
+        int cycleDays = 1;
 
+        // accumulating one more candy out makes purchase one more day spaced out
         while (true) {
-            if (day + candy >= z) {
-                cash += (z - day - 1) * x;
+
+            if (day + cycleDays >= z) {
+                if ( (z - day) % cycleDays = 0) {
+                    // on day of purchase
+
+                } else {
+                    // not doing purchase
+
+                }
+                cash += (z - day) * (x - y);
                 return cash;
             } else {
-                cash += candy * x;
-                day += candy;
+                int cycleDays = (int) (Math.ceil(1.0 * (y - cash) / (x - y)));
+
+                day += cycleDays;
+                cash += cycleDays * (x - y);
                 candy = cash / y;
                 cash = cash % y;
+                day += candy;
+                cash += x;
             }
         }
     }
@@ -162,6 +181,33 @@ public class CandyAddict {
         int[] p1;
         int[] p2;
         long[] p3;
+        // Problem: 1000
+        // Test Case: 4
+        // Succeeded: No
+        // Execution Time: 5 ms
+        // Peak memory used: 7.680MB
+        // Args:
+        // {{1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000},
+        // {1, 999999999, 2, 999999998, 3, 999999997, 4, 999999996, 5, 1000000000},
+        // {1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000}}
+
+        // Expected:
+        // {999999999000000000, 1000000000, 499999999000000000, 1000000002, 666666666000000001, 2000000003, 749999999000000000, 2000000008, 799999999000000000, 0}
+
+        // Received:
+        // {999999999000000000, 1000000000, 499999999000000000, 1000000000, 666666666000000001, 1000000000, 749999999000000000, 1000000000, 799999999000000000, 0}
+
+        // Answer checking result:
+        // Returned value must exactly match the expected one.
+
+        // ----- test 0 -----
+        p0 = new int[] {1000000000};
+        p1 = new int[] {999999998};
+        p2 = new int[] {1000000000};
+        p3 = new long[] {1000000002L};
+        all_right = KawigiEdit_RunTest(0, p0, p1, p2, true, p3) && all_right;
+        // ------------------
+
 
         // ----- test 0 -----
         p0 = new int[] {5};

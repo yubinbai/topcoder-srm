@@ -18,7 +18,7 @@ public class CandyAddict {
             if (x == y) {
                 ret[caseNo] = 0;
             } else {
-                ret[caseNo] = (x / (x - y) > 100) ? calc3(x, y, z) : calc2(x, y, z);
+                ret[caseNo] = (x / (x - y) > 100) ? calc(x, y, z) : calc2(x, y, z);
             }
         }
         return ret;
@@ -60,38 +60,38 @@ public class CandyAddict {
         }
     }
 
-    // try to improve, candy purchase is tiny
-    public long calc3(int x, int y, int z) {
-        long cash = 0;
-        long candy;
-        long day = 0;
-        int cycleDays = 1;
+    // // try to improve, candy purchase is tiny
+    // public long calc3(int x, int y, int z) {
+    //     long cash = 0;
+    //     long candy;
+    //     long day = 0;
+    //     int cycleDays = 1;
 
-        // accumulating one more candy out makes purchase one more day spaced out
-        while (true) {
+    //     // accumulating one more candy out makes purchase one more day spaced out
+    //     while (true) {
 
-            if (day + cycleDays >= z) {
-                if ( (z - day) % cycleDays = 0) {
-                    // on day of purchase
+    //         if (day + cycleDays >= z) {
+    //             if ( (z - day) % cycleDays == 0) {
+    //                 // on day of purchase
 
-                } else {
-                    // not doing purchase
+    //             } else {
+    //                 // not doing purchase
 
-                }
-                cash += (z - day) * (x - y);
-                return cash;
-            } else {
-                int cycleDays = (int) (Math.ceil(1.0 * (y - cash) / (x - y)));
+    //             }
+    //             cash += (z - day) * (x - y);
+    //             return cash;
+    //         } else {
+    //             int cycleDays = (int) (Math.ceil(1.0 * (y - cash) / (x - y)));
 
-                day += cycleDays;
-                cash += cycleDays * (x - y);
-                candy = cash / y;
-                cash = cash % y;
-                day += candy;
-                cash += x;
-            }
-        }
-    }
+    //             day += cycleDays;
+    //             cash += cycleDays * (x - y);
+    //             candy = cash / y;
+    //             cash = cash % y;
+    //             day += candy;
+    //             cash += x;
+    //         }
+    //     }
+    // }
 
 
     // BEGIN KAWIGIEDIT TESTING

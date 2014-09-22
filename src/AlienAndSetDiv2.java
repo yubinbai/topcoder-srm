@@ -25,12 +25,14 @@ public class AlienAndSetDiv2 {
                         if ((mask & (1 << i)) != 0) pos = i;
                     }
                     if (pos < K - 1) {
+                        // allow to put more in the first set
                         next = mask;
                         next <<= 1;
                         ++next;
                         dp[curr + 1][next] += dp[curr][mask];
                         dp[curr + 1][next] %= MOD;
                     }
+                    // put one in second set
                     next = mask;
                     next -= (1 << pos);
                     next <<= 1;

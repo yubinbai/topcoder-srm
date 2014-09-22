@@ -8,11 +8,38 @@ import java.math.*;
  */
 public class AlienAndSetDiv2 {
     public int getNumber(int N, int K) {
-        int[] dp = new int[2 * N];
-        for (int i = 0; i < 2 * N; ++i) {
-            /* code */
+        int maxN = 128, maxK = 10;
+        int MOD = 1000000007;
+        // use filled slots + last k fills (bitmask) as state description
+        int[][] dp = new int[maxN][1 << maxK];
+        dp[0][0] = 1;
+        for (int curr = 0; curr < 2 * N; ++curr) {
+            for (int mask = 0; mask < (1 << K); ++mask) {
+                if (dp[curr][mask] == 0) continue; // speed up
+                if (mask == 0) {
+                    dp[curr + 1][1] += (dp[curr][mask] * 2) % MOD;
+                    dp[curr + 1][1] %= MOD;
+                } else {
+                    int pos = 0, next;
+                    for (int i = 0; i < K; ++i) {
+                        if ((mask & (1 << i)) != 0) pos = i;
+                    }
+                    if (pos < K - 1) {
+                        next = mask;
+                        next <<= 1;
+                        ++next;
+                        dp[curr + 1][next] += dp[curr][mask];
+                        dp[curr + 1][next] %= MOD;
+                    }
+                    next = mask;
+                    next -= (1 << pos);
+                    next <<= 1;
+                    dp[curr + 1][next] += dp[curr][mask];
+                    dp[curr + 1][next] %= MOD;
+                }
+            }
         }
-        return dp[2 * N - 1];
+        return dp[2 * N][0];
     }
 
     // BEGIN KAWIGIEDIT TESTING

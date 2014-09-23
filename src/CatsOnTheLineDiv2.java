@@ -5,8 +5,16 @@ import java.math.*;
 
 /**
  * SRM 631
+ *
  */
 public class CatsOnTheLineDiv2 {
+    /**
+     * greedy approach to move edges to side as far as possible
+     * @param  position
+     * @param  count
+     * @param  time
+     * @return
+     */
     public String getAnswer(int[] position, int[] count, int time) {
 
     }

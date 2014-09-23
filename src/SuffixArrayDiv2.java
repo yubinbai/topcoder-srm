@@ -11,7 +11,7 @@ public class SuffixArrayDiv2 {
      * @return   [description]
      */
     public String smallerOne(String s) {
-
+        return "True";
     }
 
     // BEGIN KAWIGIEDIT TESTING

@@ -6,6 +6,11 @@ import java.math.*;
 /**
  * SRM 603
  */
+// python code for converging expr
+// ret = 0
+// for x in xrange(1,1000):
+//     ret = 0.01 + 0.99 * ret
+//     print ret
 public class GraphWalkWithProbabilities {
     /**
      * iterate until numbers are stable

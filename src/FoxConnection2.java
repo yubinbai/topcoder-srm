@@ -9,8 +9,8 @@ import java.math.*;
 public class FoxConnection2 {
     /**
      * DFS + DP on tree
-     * 3-dimension dp 
-     *     (currPos, usedFox, # of children used)
+     * 4-dimension dp 
+     *     (currPos, remainFox, startChild, endChild)
      * @param  A [description]
      * @param  B [description]
      * @param  k [description]

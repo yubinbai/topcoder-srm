@@ -7,9 +7,12 @@ import java.math.*;
  * SRM 604
  */
 public class FoxConnection2 {
+    boolean[][] graph;
+    int size;
+    int[][][][] dp;
     /**
      * DFS + DP on tree
-     * 4-dimension dp 
+     * 4-dimension dp
      *     (currPos, remainFox, startChild, endChild)
      * @param  A [description]
      * @param  B [description]
@@ -17,7 +20,25 @@ public class FoxConnection2 {
      * @return   [description]
      */
     public int ways(int[] A, int[] B, int k) {
-        return 1;
+        size = A.length + 1;
+        graph = new boolean[size][size];
+        dp = new int[size][size][size][size];
+        for (int i = 0; i < A.length; ++i) {
+            graph[A[i] - 1][B[i] - 1] = true;
+        }
+        return solve(0, k, 0, size - 1);
+    }
+    private int solve(int currPos, int remainFox, int startChild, int endChild) {
+        int ret = 0;
+        // use the currnet node
+
+        // not using the current node
+        for (int i = 0; i < size; ++i) {
+            if (graph[currPos][i]) {
+                ret += solve(i, remainFox, 0, size - 1);
+            }
+        }
+        return ret;
     }
 
     // BEGIN KAWIGIEDIT TESTING

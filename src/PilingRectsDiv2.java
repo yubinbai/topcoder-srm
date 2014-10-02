@@ -5,8 +5,48 @@ import java.math.*;
 
 
 public class PilingRectsDiv2 {
+    class Rect implements Comparable<Rect> {
+        int x, y;
+        long area;
+        public Rect(int x, int y) {
+            this.x = Math.min(x, y);
+            this.y = Math.max(x, y);
+            this.area = 1L * x * y;
+        }
+        public int compareTo(Rect that) {
+            Long one = new Long(this.area);
+            Long two = new Long(that.area);
+            return one.compareTo(two);
+        }
+    }
     public int getmax(int[] X, int[] Y, int limit) {
-        return 1;
+        int N = X.length;
+        Rect[] arr = new Rect[N];
+        for (int i = 0; i < N; ++i) {
+            arr[i] = new Rect(X[i], Y[i]);
+        }
+        Arrays.sort(arr);
+
+        int[] lis = new int[N];
+        Arrays.fill(lis, -1);
+        for (int i = 0; i < N; ++i) {
+            if (arr[i].area >= limit) {
+                lis[i] = 1;
+                for (int j = 0; j < i; ++j) {
+                    if (canCover(arr[j], arr[i])) {
+                        lis[i] = Math.max(lis[i], lis[j] + 1);
+                    }
+                }
+            }
+        }
+        int ret = 0;
+        for (int l : lis) {
+            ret = Math.max(ret, l);
+        }
+        return ret;
+    }
+    private boolean canCover(Rect small, Rect big) {
+        return small.x <= big.x && small.y <= big.y && small.area <= big.area;
     }
 
     // BEGIN KAWIGIEDIT TESTING

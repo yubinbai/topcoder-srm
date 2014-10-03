@@ -5,48 +5,40 @@ import java.math.*;
 
 
 public class PilingRectsDiv2 {
-    class Rect implements Comparable<Rect> {
-        int x, y;
-        long area;
-        public Rect(int x, int y) {
-            this.x = Math.min(x, y);
-            this.y = Math.max(x, y);
-            this.area = 1L * x * y;
-        }
-        public int compareTo(Rect that) {
-            Long one = new Long(this.area);
-            Long two = new Long(that.area);
-            return one.compareTo(two);
-        }
-    }
-    public int getmax(int[] X, int[] Y, int limit) {
-        int N = X.length;
-        Rect[] arr = new Rect[N];
-        for (int i = 0; i < N; ++i) {
-            arr[i] = new Rect(X[i], Y[i]);
-        }
-        Arrays.sort(arr);
+    int[] X, Y;
+    int N;
+    int limit;
+    int ret = -1, curr = 0;
+    int currX = Integer.MAX_VALUE - 100, currY = Integer.MAX_VALUE - 100;
 
-        int[] lis = new int[N];
-        Arrays.fill(lis, -1);
-        for (int i = 0; i < N; ++i) {
-            if (arr[i].area >= limit) {
-                lis[i] = 1;
-                for (int j = 0; j < i; ++j) {
-                    if (canCover(arr[j], arr[i])) {
-                        lis[i] = Math.max(lis[i], lis[j] + 1);
-                    }
-                }
-            }
-        }
-        int ret = 0;
-        for (int l : lis) {
-            ret = Math.max(ret, l);
-        }
+    public int getmax(int[] X, int[] Y, int limit) {
+        N = X.length;
+        this.limit = limit;
+        this.X = X;
+        this.Y = Y;
+        solve(0);
         return ret;
     }
-    private boolean canCover(Rect small, Rect big) {
-        return small.x <= big.x && small.y <= big.y && small.area <= big.area;
+    public void solve(int step) {
+        if (step == N) return;
+        int xi = Math.min(X[step], Y[step]);
+        int yi = Math.max(X[step], Y[step]);
+        int x = Math.min(currX, xi);
+        int y = Math.min(currY, yi);
+        if (x * y >= limit) {
+            curr++;
+            ret = Math.max(ret, curr);
+            int prevX = currX, prevY = currY;
+            currX = x;
+            currY = y;
+            solve(step + 1);
+            currX = prevX;
+            currY = prevY;
+            curr--;
+        } else {
+            solve(step + 1);
+        }
+
     }
 
     // BEGIN KAWIGIEDIT TESTING
@@ -108,6 +100,20 @@ public class PilingRectsDiv2 {
         int p2;
         int p3;
 
+        p0 = new int[] {77, 134, 82, 80, 54, 104, 18, 114, 75, 24, 86, 167, 178, 150, 192, 10, 50, 192, 79, 151, 1, 16, 56, 177, 197, 127, 188, 63, 5, 142, 80, 165, 164, 137, 34};
+        p1 = new int[] {128, 42, 156, 153, 191, 115, 90, 166, 126, 102, 198, 9, 152, 102, 105, 3, 135, 21, 28, 39, 161, 32, 86, 44, 46, 152, 156, 58, 40, 74, 192, 194, 60, 167, 151};
+        p2 = 728;
+        p3 = 30;
+        all_right = KawigiEdit_RunTest(4, p0, p1, p2, true, p3) && all_right;
+
+        // ----- test 4 -----
+        p0 = new int[] {3, 6, 5, 8, 2, 9, 14};
+        p1 = new int[] {14, 6, 13, 8, 15, 6, 3};
+        p2 = 27;
+        p3 = 4;
+        all_right = KawigiEdit_RunTest(4, p0, p1, p2, true, p3) && all_right;
+        // ------------------
+
         // ----- test 0 -----
         p0 = new int[] {1, 2, 3, 1};
         p1 = new int[] {3, 2, 4, 4};
@@ -138,14 +144,6 @@ public class PilingRectsDiv2 {
         p2 = 30;
         p3 = 1;
         all_right = KawigiEdit_RunTest(3, p0, p1, p2, true, p3) && all_right;
-        // ------------------
-
-        // ----- test 4 -----
-        p0 = new int[] {3, 6, 5, 8, 2, 9, 14};
-        p1 = new int[] {14, 6, 13, 8, 15, 6, 3};
-        p2 = 27;
-        p3 = 4;
-        all_right = KawigiEdit_RunTest(4, p0, p1, p2, true, p3) && all_right;
         // ------------------
 
         // ----- test 5 -----

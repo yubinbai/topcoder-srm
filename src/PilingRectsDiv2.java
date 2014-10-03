@@ -9,7 +9,7 @@ public class PilingRectsDiv2 {
     int N;
     int limit;
     int ret = -1, curr = 0;
-    int currX = Integer.MAX_VALUE - 100, currY = Integer.MAX_VALUE - 100;
+    int currX = Integer.MAX_VALUE, currY = Integer.MAX_VALUE;
 
     public int getmax(int[] X, int[] Y, int limit) {
         N = X.length;
@@ -21,16 +21,26 @@ public class PilingRectsDiv2 {
     }
     public void solve(int step) {
         if (step == N) return;
-        int xi = Math.min(X[step], Y[step]);
-        int yi = Math.max(X[step], Y[step]);
-        int x = Math.min(currX, xi);
-        int y = Math.min(currY, yi);
-        if (x * y >= limit) {
+        int x1 = Math.min(currX, X[step]);
+        int y1 = Math.min(currY, Y[step]);
+        int x2 = Math.min(currY, X[step]);
+        int y2 = Math.min(currX, Y[step]);
+        if (x1 * y1 >= limit) {
             curr++;
             ret = Math.max(ret, curr);
             int prevX = currX, prevY = currY;
-            currX = x;
-            currY = y;
+            currX = x1;
+            currY = y1;
+            solve(step + 1);
+            currX = prevX;
+            currY = prevY;
+            curr--;
+        } else if (x2 * y2 >= limit) {
+            curr++;
+            ret = Math.max(ret, curr);
+            int prevX = currX, prevY = currY;
+            currX = x2;
+            currY = y2;
             solve(step + 1);
             currX = prevX;
             currY = prevY;

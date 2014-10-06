@@ -13,7 +13,7 @@ public class WinterAndReindeers {
      * @return      [description]
      */
     public int getNumber(String[] allA, String[] allB, String[] allC) {
-
+        return 1;
     }
 
     // BEGIN KAWIGIEDIT TESTING

@@ -6,6 +6,7 @@ import java.math.*;
 
 public class LittleElephantAndString {
     /**
+     * SRM 597
      * Greedy method, 
      *     find the largest ordered segment in two strings
      *     the rest of the striing needs to be rearranged

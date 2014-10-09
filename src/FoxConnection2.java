@@ -7,38 +7,60 @@ import java.math.*;
  * SRM 604
  */
 public class FoxConnection2 {
-    boolean[][] graph;
-    int size;
-    int[][][][] dp;
+    static int MOD = 1000000007;
+    boolean[][] linked;
+    int n, want;
+    long[][] dp;
+    long ans;
     /**
      * DFS + DP on tree
      * 4-dimension dp
      *     (currPos, remainFox, startChild, endChild)
+     *     how is the state defined? what will make the transition?
      * @param  A [description]
      * @param  B [description]
      * @param  k [description]
      * @return   [description]
      */
     public int ways(int[] A, int[] B, int k) {
-        size = A.length + 1;
-        graph = new boolean[size][size];
-        dp = new int[size][size][size][size];
+        n = A.length + 1;
+        linked = new boolean[n + 1][n + 1];
+        dp = new long[n + 1][n + 1];
         for (int i = 0; i < A.length; ++i) {
-            graph[A[i] - 1][B[i] - 1] = true;
+            linked[A[i]][B[i]] = true;
+            linked[B[i]][A[i]] = true;
         }
-        return solve(0, k, 0, size - 1);
+        for (long[] arr : dp) {
+            Arrays.fill(arr, -1);
+        }
+        want = k;
+        ans = 0;
+        dfs(1, -1);
+        return (int) ans;
     }
-    private int solve(int currPos, int remainFox, int startChild, int endChild) {
-        int ret = 0;
-        // use the currnet node
-
-        // not using the current node
-        for (int i = 0; i < size; ++i) {
-            if (graph[currPos][i]) {
-                ret += solve(i, remainFox, 0, size - 1);
+    private void dfs(int cur, int from) {
+        long[] ret = new long[n + 1];
+        ret[1] = 1;
+        for (int i = 1; i <= n; ++i) {
+            if (linked[cur][i]) {
+                if (i == from) continue;
+                dfs(i, cur);
+                long[] nextRet = new long[n + 1];
+                for (int j = 0; j <= n; ++j) {
+                    for (int k = 0; k <= j; ++k) {
+                        nextRet[j] = (nextRet[j] + ret[j - k] * dp[i][k]) % MOD;
+                    }
+                }
+                for (int j = 0; j <= n; ++j) {
+                    ret[j] = nextRet[j];
+                }
             }
         }
-        return ret;
+        ret[0] = (ret[0] + 1) % MOD;
+        for (int i = 0; i <= n; ++i) {
+            dp[cur][i] = ret[i];
+        }
+        ans = (ans + dp[cur][want]) % MOD;
     }
 
     // BEGIN KAWIGIEDIT TESTING

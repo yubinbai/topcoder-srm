@@ -43,7 +43,7 @@ public class FoxConnection2 {
         ret[1] = 1;
         for (int i = 1; i <= n; ++i) {
             if (linked[cur][i]) {
-                if (i == from) continue;
+                if (i == from) continue; // this makes it dfs
                 dfs(i, cur);
                 long[] nextRet = new long[n + 1];
                 for (int j = 0; j <= n; ++j) {
@@ -60,7 +60,7 @@ public class FoxConnection2 {
         for (int i = 0; i <= n; ++i) {
             dp[cur][i] = ret[i];
         }
-        ans = (ans + dp[cur][want]) % MOD;
+        ans = (ans + dp[cur][want]) % MOD; // every node for once
     }
 
     // BEGIN KAWIGIEDIT TESTING

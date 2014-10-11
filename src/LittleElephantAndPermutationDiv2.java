@@ -5,6 +5,19 @@ import java.math.*;
 
 
 public class LittleElephantAndPermutationDiv2 {
+    public static int[] fact = new int[12];
+    static {
+        fact[0] = 1;
+        for (int i = 1; i < 12; ++i) {
+            fact[i] = fact[i - 1] * i;
+        }
+    }
+    /**
+     * srm 592
+     * @param  N [description]
+     * @param  K [description]
+     * @return   [description]
+     */
     public long getNumber(int N, int K) {
         int[] a = new int[N];
         int[] b = new int[N];

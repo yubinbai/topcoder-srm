@@ -5,20 +5,20 @@ import java.math.*;
 
 
 public class LittleElephantAndPermutationDiv2 {
-    public static int[] fact = new int[12];
-    static {
-        fact[0] = 1;
-        for (int i = 1; i < 12; ++i) {
-            fact[i] = fact[i - 1] * i;
-        }
-    }
     /**
      * srm 592
+     *     Treat each pair as a list mapping from 1, 2,.. N to a perm(1, 2, ... N)
+     *     Multiply each valid pair with factorial(N)
      * @param  N [description]
      * @param  K [description]
      * @return   [description]
      */
     public long getNumber(int N, int K) {
+        int[] fact = new int[12];
+        fact[0] = 1;
+        for (int i = 1; i < 12; ++i) {
+            fact[i] = fact[i - 1] * i;
+        }
         int[] a = new int[N];
         int[] b = new int[N];
         for (int i = 0; i < N; i++) {
@@ -26,15 +26,13 @@ public class LittleElephantAndPermutationDiv2 {
         }
         int ret = 0;
         do {
-            do {
-                int s = 0;
-                for (int i = 0; i < N; i++) {
-                    s += Math.max(a[i], b[i]);
-                }
-                if (s >= K) ret++;
-            } while (nextPermutation(a) == 1);
-        } while (nextPermutation(b) == 1);
-        return ret;
+            int s = 0;
+            for (int i = 0; i < N; i++) {
+                s += Math.max(a[i], b[i]);
+            }
+            if (s >= K) ret++;
+        } while (nextPermutation(a) == 1);
+        return 1L * ret * fact[N];
     }
 
     // get the next permutation in place

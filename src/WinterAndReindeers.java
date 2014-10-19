@@ -6,6 +6,7 @@ import java.math.*;
 
 public class WinterAndReindeers {
     /**
+     * SRM 601
      * LCS with additional constraints
      * dp[lenA][lenB][progress of C]
      *
@@ -14,41 +15,101 @@ public class WinterAndReindeers {
      * @param allC
      * @return
      */
+
     public int getNumber(String[] allA, String[] allB, String[] allC) {
-        StringBuilder sb = new StringBuilder();
-        for (String s : allA) {
-            sb.append(s);
-        }
-        char[] a = sb.toString().toCharArray();
-        sb = new StringBuilder();
-        for (String s : allB) {
-            sb.append(s);
-        }
-        char[] b = sb.toString().toCharArray();
-        sb = new StringBuilder();
-        for (String s : allC) {
-            sb.append(s);
-        }
-        char[] c = sb.toString().toCharArray();
-        int na = a.length, nb = b.length, nc = c.length;
-        int[][][] dp = new int[na + 1][nb + 1][nc + 2];
-        for (int k = 1; k <= c.length; k++) {
-            for (int i = 1; i <= a.length; i++) {
-                for (int j = 1; j <= b.length; j++) {
-                    if (a[i - 1] == b[j - 1]) {
-                        int t = Math.max(dp[i][j - 1][k], dp[i - 1][j][k]);
-                        dp[i][j][k] = Math.max(dp[i - 1][j - 1][k] + 1, t);
-                        if (a[i - 1] == c[k - 1]) {
-                            dp[i][j][k + 1] = Math.max(dp[i][j][k + 1], dp[i][j][k]);
-                        }
-                    } else {
-                        dp[i][j][k] = Math.max(dp[i][j - 1][k], dp[i - 1][j][k]);
-                    }
+        String sa = "";
+        String sb = "";
+        String sc = "";
+
+        for (String a : allA) sa += a;
+        for (String b : allB) sb += b;
+        for (String c : allC) sc += c;
+
+        final int an = sa.length();
+        final int bn = sb.length();
+        final int cn = sc.length();
+
+        char[] A = sa.toCharArray();
+        char[] B = sb.toCharArray();
+        char[] C = sc.toCharArray();
+
+        Vector<Integer> foundA = findAll(A, C, an, cn);
+
+        Vector<Integer> foundB = findAll(B, C, bn, cn);
+
+        int[][] dpForward = new int[an + 1][bn + 1];
+        //  LCS
+        for (int i = 1; i <= an; i++) {
+            for (int j = 1; j <= bn; j++) {
+                if (A[i - 1] == B[j - 1]) {
+                    dpForward[i][j] = dpForward[i - 1][j - 1] + 1;
+                } else {
+                    dpForward[i][j] = Math.max(dpForward[i - 1][j], dpForward[i][j - 1]);
                 }
             }
         }
 
-        return dp[na][nb][nc];
+        int[][] dpReverse = new int[an + 1][bn + 1];
+
+        for (int i = an - 1; i >= 0; i--) {
+            for (int j = bn - 1; j >= 0; j--) {
+                if (A[i] == B[j]) {
+                    dpReverse[i][j] = dpReverse[i + 1][j + 1] + 1;
+                } else {
+                    dpReverse[i][j] = Math.max(dpReverse[i + 1][j], dpReverse[i][j + 1]);
+                }
+            }
+        }
+
+        int ret = 0;
+
+        for (int i = 0; i < foundA.size(); i += 2) {
+            for (int j = 0; j < foundB.size(); j += 2) {
+                int fa1 = foundA.get(i);
+                int fa2 = foundA.get(i + 1);
+                int fb1 = foundB.get(j);
+                int fb2 = foundB.get(j + 1);
+                ret = Math.max(ret, cn + dpForward[fa1][fb1] + dpReverse[fa2][fb2]);
+            }
+        }
+
+        System.out.println(foundA);
+        System.out.println(foundB);
+        System.out.println();
+        return ret;
+    }
+
+    public Vector<Integer> findAll(char[] S, char[] C, final int sn, final int cn) {
+        Vector<Integer> found = new Vector<Integer>();
+
+        for (int i = 0; i < sn; i++) {
+            if (S[i] == C[0]) {
+                int temp = substring(S, C, sn, cn, i + 1);
+                if (temp != -1) {
+                    found.add(i);
+                    found.add(temp);
+                }
+            }
+        }
+
+        return found;
+    }
+
+    public int substring(char[] S, char[] C, final int sn, final int cn, int i) {
+        int count = 1;
+
+        for (; i < sn && count < cn; i++) {
+            if (S[i] == C[count]) {
+                count++;
+            }
+            if (sn - i < cn - count) {
+                return -1;
+            }
+        }
+
+        if (count < cn) return -1;
+
+        return i;
     }
 
     // BEGIN KAWIGIEDIT TESTING

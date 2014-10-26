@@ -1,9 +1,3 @@
-import java.util.*;
-import java.util.regex.*;
-import java.text.*;
-import java.math.*;
-
-
 public class GUMIAndSongsDiv2
 {
 	/**
@@ -27,7 +21,7 @@ public class GUMIAndSongsDiv2
         }
         for (int i = 1; i < 1 << n; i++) {
             for (int j = 0; j < n; j++) {
-                if (((i >> j) & 1) == 0) continue;;
+                if (((i >> j) & 1) == 0) continue;
                 for (int k = 0; k < n; k++) {
                     if (((i >> k) & 1) == 1) continue;
                     dp[i|1 << k][k] = Math.min(

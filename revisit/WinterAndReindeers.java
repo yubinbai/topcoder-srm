@@ -1,9 +1,3 @@
-import java.util.*;
-import java.util.regex.*;
-import java.text.*;
-import java.math.*;
-
-
 public class WinterAndReindeers {
     /**
      * SRM 601

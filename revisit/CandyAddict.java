@@ -1,8 +1,3 @@
-import java.util.*;
-import java.util.regex.*;
-import java.text.*;
-import java.math.*;
-
 /**
  * SRM 629 div2 1000 pt
  *

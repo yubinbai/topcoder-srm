@@ -30,18 +30,18 @@ public class SurveillanceSystem {
             if (qty[i] == 0) continue;
 
             Arrays.fill(covered, 0);
-            int total = 0;
+            int count_i_total = 0;
             for (int j = 0; j < count.length; j++) {
                 if (count[j] == i) {
                     for (int k = 0; k < L; k++)
                         covered[j + k]++;
-                    total++;
+                    count_i_total++;
                 }
             }
             for (int j = 0; j < covered.length; j++) {
                 if (covered[j] != 0 && answer[j] == '-')
                     answer[j] = '?';
-                if (covered[j] + qty[i] > total)
+                if (covered[j] > count_i_total - qty[i])
                     answer[j] = '+';
             }
         }

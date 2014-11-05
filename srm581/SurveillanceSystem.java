@@ -1,9 +1,3 @@
-import java.util.*;
-import java.util.regex.*;
-import java.text.*;
-import java.math.*;
-
-
 public class SurveillanceSystem {
     public String getContainerInfo(String containers, int[] reports, int L) {
         // get count from container layout

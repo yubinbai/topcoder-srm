@@ -1,9 +1,3 @@
-import java.util.*;
-import java.util.regex.*;
-import java.text.*;
-import java.math.*;
-
-
 public class BlackAndWhiteSolitaire
 {
 	public int minimumTurns(String cardFront)

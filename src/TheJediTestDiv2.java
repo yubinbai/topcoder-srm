@@ -14,6 +14,7 @@ public class TheJediTestDiv2
         for (int i = 0; i < n; i++) {
             int curr = students[i];
             curr -= Y;
+            curr = Math.max(0, curr);
             if (curr % J == 0) {
                 hasY[i] = curr / J;
             } else {

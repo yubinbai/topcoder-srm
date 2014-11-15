@@ -7,7 +7,7 @@ import java.math.*;
 public class CoinsGameEasy {
     String[] board;
     int n, m, ans;
-    int[][] direct = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
+    int[][] direct = {{ -1, 0}, {0, -1}, {0, 1}, {1, 0}};
     public int minimalSteps(String[] board) {
         int p1r = -1, p1c = -1, p2r = -1, p2c = -1;
         this.board = board;

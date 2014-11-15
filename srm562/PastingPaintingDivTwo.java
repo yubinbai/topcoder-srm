@@ -6,12 +6,41 @@ import java.math.*;
 
 public class PastingPaintingDivTwo
 {
-    int n, m, overlap;
 	public long countColors(String[] clipboard, int T)
 	{
+        int n, m, size;
 		n = clipboard.length;
         m = clipboard[0].length();
-        overlap = Math.min(n, m);
+        size = Math.max(n, m);
+        char[][] board = new  char[size * 2][size * 2];
+        for (int iter = 0; iter < Math.min(size, T); iter++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    if (clipboard[i].charAt(j) == 'B') {
+                        board[iter + i][iter + j] = 'B';
+                    }
+                }
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < size * 2; i++) {
+            for (int j = 0; j < size * 2; j++) {
+                if (board[i][j] == 'B') count++;
+            }
+        }
+        if (T <= size) {
+            return count;
+        } else {
+            long border = 0;
+            for (int i = 0; i < n - 1; i++) {
+                if (board[i][m - 1] == 'B') border++;
+            }
+            for (int i = 0; i < m; i++) {
+                if (board[n - 1][i] == 'B') border++;
+            }
+            border *= T - size;
+            return count + border;
+        }
 
 	}
 	

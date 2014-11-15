@@ -4,8 +4,7 @@ import java.text.*;
 import java.math.*;
 
 
-public class FibonacciDiv2
-{
+public class FibonacciDiv2 {
     public static ArrayList<Integer> fibs = new ArrayList<Integer>();
     static {
         int a = 0, b = 1, temp = 0;
@@ -17,8 +16,7 @@ public class FibonacciDiv2
             fibs.add(temp);
         }
     }
-    public int find(int N)
-    {
+    public int find(int N) {
         int pos = Collections.binarySearch(fibs, N);
         if (pos >= 0) {
             return 0;

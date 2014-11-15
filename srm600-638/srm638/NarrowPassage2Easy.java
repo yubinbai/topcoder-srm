@@ -84,42 +84,42 @@ public class NarrowPassage2Easy {
         int p2;
 
         // ----- test 0 -----
-        p0 = new int[]{1, 2, 3};
+        p0 = new int[] {1, 2, 3};
         p1 = 3;
         p2 = 2;
         all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new int[]{1, 2, 3};
+        p0 = new int[] {1, 2, 3};
         p1 = 1000;
         p2 = 6;
         all_right = KawigiEdit_RunTest(1, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new int[]{1, 2, 3};
+        p0 = new int[] {1, 2, 3};
         p1 = 4;
         p2 = 3;
         all_right = KawigiEdit_RunTest(2, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new int[]{1, 1, 1, 1, 1, 1};
+        p0 = new int[] {1, 1, 1, 1, 1, 1};
         p1 = 2;
         p2 = 720;
         all_right = KawigiEdit_RunTest(3, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 4 -----
-        p0 = new int[]{2, 4, 6, 1, 3, 5};
+        p0 = new int[] {2, 4, 6, 1, 3, 5};
         p1 = 8;
         p2 = 60;
         all_right = KawigiEdit_RunTest(4, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 5 -----
-        p0 = new int[]{1000};
+        p0 = new int[] {1000};
         p1 = 1000;
         p2 = 1;
         all_right = KawigiEdit_RunTest(5, p0, p1, true, p2) && all_right;

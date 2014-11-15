@@ -13,8 +13,12 @@ public class ApplesAndPears {
                 for (int w = 0; w <= i; w++) {
                     for (int h = 0; h <= j; h++) {
                         switch (board[w].charAt(h)) {
-                        case 'A': m[i + 1][j + 1][0]++; break;
-                        case 'P': m[i + 1][j + 1][1]++; break;
+                        case 'A':
+                            m[i + 1][j + 1][0]++;
+                            break;
+                        case 'P':
+                            m[i + 1][j + 1][1]++;
+                            break;
                         }
                     }
                 }

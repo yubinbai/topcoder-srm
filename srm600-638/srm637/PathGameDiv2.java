@@ -90,25 +90,25 @@ public class PathGameDiv2 {
         int p1;
 
         // ----- test 0 -----
-        p0 = new String[]{"#....", "...#."};
+        p0 = new String[] {"#....", "...#."};
         p1 = 2;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new String[]{"#", "."};
+        p0 = new String[] {"#", "."};
         p1 = 0;
         all_right = KawigiEdit_RunTest(1, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new String[]{".", "."};
+        p0 = new String[] {".", "."};
         p1 = 1;
         all_right = KawigiEdit_RunTest(2, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new String[]{"....#.##.....#...........", "..#......#.......#..#...."};
+        p0 = new String[] {"....#.##.....#...........", "..#......#.......#..#...."};
         p1 = 13;
         all_right = KawigiEdit_RunTest(3, p0, true, p1) && all_right;
         // ------------------

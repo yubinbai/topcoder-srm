@@ -6,30 +6,30 @@ import java.math.*;
 
 public class TaroFriends {
     public int getNumber(int[] coordinates, int X) {
-    	int n = coordinates.length;
-    	int[] all = new int[2 * n];
-    	for (int i = 0; i < n; ++i) {
-    	    all[i * 2] = coordinates[i] - X;
-    	    all[i * 2 + 1] = coordinates[i] + X;
-    	}
-    	Arrays.sort(all);
-    	int ret = Integer.MAX_VALUE;
-    	for (int i = 0; i < 2 * n; ++i) {
-    	    for (int j = i; j < 2 * n; ++j) {
-    	    	int currMax = all[j];
-    	    	int currMin = all[i];
-    	    	boolean ok = true;
-    	    	for (int k = 0; k < n; ++k) {
-    	    	    boolean b1 = coordinates[k] - X >= currMin && coordinates[k] - X <= currMax;
-    	    	    boolean b2 = coordinates[k] + X >= currMin && coordinates[k] + X <= currMax;
-    	    	    if (!b1 && !b2) {
-    	    	    	ok = false;
-    	    	    	break;
-    	    	    }
-    	    	}
-    	    	if (ok) ret = Math.min(ret, currMax - currMin);
-    	    }
-    	}
+        int n = coordinates.length;
+        int[] all = new int[2 * n];
+        for (int i = 0; i < n; ++i) {
+            all[i * 2] = coordinates[i] - X;
+            all[i * 2 + 1] = coordinates[i] + X;
+        }
+        Arrays.sort(all);
+        int ret = Integer.MAX_VALUE;
+        for (int i = 0; i < 2 * n; ++i) {
+            for (int j = i; j < 2 * n; ++j) {
+                int currMax = all[j];
+                int currMin = all[i];
+                boolean ok = true;
+                for (int k = 0; k < n; ++k) {
+                    boolean b1 = coordinates[k] - X >= currMin && coordinates[k] - X <= currMax;
+                    boolean b2 = coordinates[k] + X >= currMin && coordinates[k] + X <= currMax;
+                    if (!b1 && !b2) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok) ret = Math.min(ret, currMax - currMin);
+            }
+        }
 
         return ret;
     }

@@ -37,9 +37,9 @@ public class GearsDiv2 {
             int ret = Integer.MAX_VALUE;
             for (int cut = 0; cut < size; ++cut) {
                 ret = Math.min(ret, solve(
-                        (cut + 1 + size) % size,
-                        (cut - 1 + size) % size
-                ));
+                                   (cut + 1 + size) % size,
+                                   (cut - 1 + size) % size
+                               ));
             }
             return 1 + ret;
         }

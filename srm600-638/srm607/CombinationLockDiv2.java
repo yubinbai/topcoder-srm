@@ -8,7 +8,7 @@ import java.math.*;
  * if a question is too large to search by brute force
  * one must be thinking about searching in a wrong space
  *
- * if that still doesn't fix the size issue, the problem should be 
+ * if that still doesn't fix the size issue, the problem should be
  * able to get solved by DP
  */
 public class CombinationLockDiv2 {

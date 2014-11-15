@@ -41,7 +41,7 @@ public class IncrementingSequence {
 
 
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(3, new int[]{1, 2, 4, 3});
+        answer = new IncrementingSequence().canItBeDone(3, new int[] {1, 2, 4, 3});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "POSSIBLE";
         System.out.println("Your answer:");
@@ -55,7 +55,7 @@ public class IncrementingSequence {
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(5, new int[]{2, 2});
+        answer = new IncrementingSequence().canItBeDone(5, new int[] {2, 2});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "IMPOSSIBLE";
         System.out.println("Your answer:");
@@ -69,7 +69,7 @@ public class IncrementingSequence {
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(1, new int[]{1, 1, 1, 1, 1, 1, 1, 1});
+        answer = new IncrementingSequence().canItBeDone(1, new int[] {1, 1, 1, 1, 1, 1, 1, 1});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "POSSIBLE";
         System.out.println("Your answer:");
@@ -83,7 +83,7 @@ public class IncrementingSequence {
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(2, new int[]{5, 3, 3, 2, 1});
+        answer = new IncrementingSequence().canItBeDone(2, new int[] {5, 3, 3, 2, 1});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "IMPOSSIBLE";
         System.out.println("Your answer:");
@@ -97,7 +97,7 @@ public class IncrementingSequence {
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(9, new int[]{1, 2, 3, 1, 4, 5, 6, 7, 9, 8});
+        answer = new IncrementingSequence().canItBeDone(9, new int[] {1, 2, 3, 1, 4, 5, 6, 7, 9, 8});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "POSSIBLE";
         System.out.println("Your answer:");
@@ -111,7 +111,7 @@ public class IncrementingSequence {
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(2, new int[]{1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2});
+        answer = new IncrementingSequence().canItBeDone(2, new int[] {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "POSSIBLE";
         System.out.println("Your answer:");
@@ -125,7 +125,7 @@ public class IncrementingSequence {
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new IncrementingSequence().canItBeDone(1, new int[]{1});
+        answer = new IncrementingSequence().canItBeDone(1, new int[] {1});
         System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = "POSSIBLE";
         System.out.println("Your answer:");

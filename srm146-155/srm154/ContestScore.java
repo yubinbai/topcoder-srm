@@ -38,14 +38,13 @@ public class ContestScore {
         @Override
         public int compareTo(Team o) {
             int cmp = Integer.valueOf(this.rating).compareTo(o.rating);
-            if (cmp == 0){
+            if (cmp == 0) {
                 int cmp1 =  Integer.valueOf(this.score).compareTo(o.score) * -1;
                 if (cmp1 == 0)
                     return this.name.compareTo(o.name);
                 else
                     return cmp1;
-            }
-            else
+            } else
                 return cmp;
         }
 

@@ -7,7 +7,7 @@ import java.math.*;
 public class BubbleSortWithReversals {
     int[][] cnt1 = new int[60][60]; // count of A[k] > A[i] for k in [i - j + 1, i]
     int[][] cnt2 = new int[60][60]; // count of A[k] < A[i] for k in [i - j + 1, i]
-    
+
     int[][] dp = new int[60][60];
 
     public int reverse(int l, int r) {

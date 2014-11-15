@@ -4,10 +4,8 @@ import java.text.*;
 import java.math.*;
 import java.awt.geom.*;
 
-public class SumOfPower
-{
-    public int findSum(int[] array)
-    {
+public class SumOfPower {
+    public int findSum(int[] array) {
         int[] s = new int[array.length];
         int n = array.length;
         if (array.length == 0) return 0;
@@ -29,8 +27,7 @@ public class SumOfPower
         return ret;
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         long time;
         int answer;
         boolean errors = false;
@@ -38,67 +35,59 @@ public class SumOfPower
 
 
         time = System.currentTimeMillis();
-        answer = new SumOfPower().findSum(new int[]{1,2});
+        answer = new SumOfPower().findSum(new int[] {1,2});
         System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
         desiredAnswer = 6;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
         System.out.println("Desired answer:");
         System.out.println("\t" + desiredAnswer);
-        if (answer != desiredAnswer)
-        {
+        if (answer != desiredAnswer) {
             errors = true;
             System.out.println("DOESN'T MATCH!!!!");
-        }
-        else
+        } else
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new SumOfPower().findSum(new int[]{1,1,1});
+        answer = new SumOfPower().findSum(new int[] {1,1,1});
         System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
         desiredAnswer = 10;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
         System.out.println("Desired answer:");
         System.out.println("\t" + desiredAnswer);
-        if (answer != desiredAnswer)
-        {
+        if (answer != desiredAnswer) {
             errors = true;
             System.out.println("DOESN'T MATCH!!!!");
-        }
-        else
+        } else
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new SumOfPower().findSum(new int[]{3,14,15,92,65});
+        answer = new SumOfPower().findSum(new int[] {3,14,15,92,65});
         System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
         desiredAnswer = 1323;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
         System.out.println("Desired answer:");
         System.out.println("\t" + desiredAnswer);
-        if (answer != desiredAnswer)
-        {
+        if (answer != desiredAnswer) {
             errors = true;
             System.out.println("DOESN'T MATCH!!!!");
-        }
-        else
+        } else
             System.out.println("Match :-)");
         System.out.println();
         time = System.currentTimeMillis();
-        answer = new SumOfPower().findSum(new int[]{1,2,3,4,5,6,7,8,9,10});
+        answer = new SumOfPower().findSum(new int[] {1,2,3,4,5,6,7,8,9,10});
         System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
         desiredAnswer = 1210;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
         System.out.println("Desired answer:");
         System.out.println("\t" + desiredAnswer);
-        if (answer != desiredAnswer)
-        {
+        if (answer != desiredAnswer) {
             errors = true;
             System.out.println("DOESN'T MATCH!!!!");
-        }
-        else
+        } else
             System.out.println("Match :-)");
         System.out.println();
 

@@ -5,9 +5,9 @@ public class MostProfitable {
         int N = costs.length;
         int rev = 0;
         int res = -1;
-        for (int i = 0;i<N;i++){
+        for (int i = 0; i<N; i++) {
             int currRev = sales[i] * (prices[i] - costs[i]);
-            if (currRev > rev){
+            if (currRev > rev) {
                 rev = sales[i] * (prices[i] - costs[i]);
                 res = i;
             }

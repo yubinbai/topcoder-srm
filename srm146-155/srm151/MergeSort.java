@@ -66,7 +66,7 @@ class MSort<Key extends Comparable<? super Key>> {
             } else if (cmp > 0) {
                 data[curr] = r.get(j);
                 j++;
-            } else{
+            } else {
                 data[curr] = l.get(i);
                 curr++;
                 data[curr] = r.get(j);

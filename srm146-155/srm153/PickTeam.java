@@ -14,10 +14,10 @@ public class PickTeam {
         N = people.length;
         names = new String[N];
         rating = new int[N][N];
-        for (int i = 0;i<N;i++){
+        for (int i = 0; i<N; i++) {
             String[] s = people[i].split(" ");
             names[i] = s[0];
-            for(int j =0;j<N;j++)
+            for(int j =0; j<N; j++)
                 rating[i][j] = Integer.parseInt(s[j+1]);
         }
 
@@ -26,25 +26,25 @@ public class PickTeam {
         return team;
     }
 
-    void combination(int v[], int start, int n, int k, int maxK){
+    void combination(int v[], int start, int n, int k, int maxK) {
 
-        if (k >= maxK){
+        if (k >= maxK) {
             int tMax = 0;
             String[] tTeam= new String[v.length];
-            for (int j =0;j<v.length;j++){
-                for (int jj = j + 1;jj < v.length;jj++){
+            for (int j =0; j<v.length; j++) {
+                for (int jj = j + 1; jj < v.length; jj++) {
                     tMax += rating[v[j]][v[jj]];
                 }
                 tTeam[j] = names[v[j]];
             }
-            if (tMax > resMax){
+            if (tMax > resMax) {
                 resMax = tMax;
                 team = tTeam;
             }
             return;
         }
 
-        for (int i = start;i<=n;i++){
+        for (int i = start; i<=n; i++) {
             v[k] = i;
             combination(v, i + 1, n, k + 1, maxK);
         }

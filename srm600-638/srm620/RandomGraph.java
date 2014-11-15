@@ -6,7 +6,8 @@ import java.math.*;
 
 public class RandomGraph {
     public double probability(int n, int p) {
-        double q = p; q /= 1000;
+        double q = p;
+        q /= 1000;
         // f[]   probability of graph only have component smaller than 4
         double[] f = new double[55];
         for (int k = 0; k < 4; ++k) {

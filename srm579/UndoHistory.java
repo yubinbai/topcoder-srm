@@ -82,43 +82,43 @@ public class UndoHistory {
         String[] p0;
         int p1;
         // ----- test 0 -----
-        p0 = new String[]{"b", "a", "b"};
+        p0 = new String[] {"b", "a", "b"};
         p1 = 9;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 0 -----
-        p0 = new String[]{"absolutely", "abs", "absolute"};
+        p0 = new String[] {"absolutely", "abs", "absolute"};
         p1 = 17;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 0 -----
-        p0 = new String[]{"tomorrow", "topcoder"};
+        p0 = new String[] {"tomorrow", "topcoder"};
         p1 = 18;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new String[]{"a", "b"};
+        p0 = new String[] {"a", "b"};
         p1 = 6;
         all_right = KawigiEdit_RunTest(1, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new String[]{"a", "ab", "abac", "abacus"};
+        p0 = new String[] {"a", "ab", "abac", "abacus"};
         p1 = 10;
         all_right = KawigiEdit_RunTest(2, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new String[]{"pyramid", "sphinx", "sphere", "python", "serpent"};
+        p0 = new String[] {"pyramid", "sphinx", "sphere", "python", "serpent"};
         p1 = 39;
         all_right = KawigiEdit_RunTest(3, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 4 -----
-        p0 = new String[]{"ba", "a", "a", "b", "ba"};
+        p0 = new String[] {"ba", "a", "a", "b", "ba"};
         p1 = 13;
         all_right = KawigiEdit_RunTest(4, p0, true, p1) && all_right;
         // ------------------

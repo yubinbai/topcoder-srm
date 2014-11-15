@@ -176,41 +176,41 @@ public class WinterAndReindeers {
         int p3;
 
         // ----- test 0 -----
-        p0 = new String[]{"X"};
-        p1 = new String[]{"X", "Y"};
-        p2 = new String[]{"X"};
+        p0 = new String[] {"X"};
+        p1 = new String[] {"X", "Y"};
+        p2 = new String[] {"X"};
         p3 = 1;
         all_right = KawigiEdit_RunTest(0, p0, p1, p2, true, p3) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new String[]{"ABCXD"};
-        p1 = new String[]{"BCDEF"};
-        p2 = new String[]{"CD"};
+        p0 = new String[] {"ABCXD"};
+        p1 = new String[] {"BCDEF"};
+        p2 = new String[] {"CD"};
         p3 = 3;
         all_right = KawigiEdit_RunTest(1, p0, p1, p2, true, p3) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new String[]{"WE", "LOVE"};
-        p1 = new String[]{"WORKING", "FOR", "SANTA"};
-        p2 = new String[]{"JK"};
+        p0 = new String[] {"WE", "LOVE"};
+        p1 = new String[] {"WORKING", "FOR", "SANTA"};
+        p2 = new String[] {"JK"};
         p3 = 0;
         all_right = KawigiEdit_RunTest(2, p0, p1, p2, true, p3) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new String[]{"ABCDE"};
-        p1 = new String[]{"CDEAB"};
-        p2 = new String[]{"B"};
+        p0 = new String[] {"ABCDE"};
+        p1 = new String[] {"CDEAB"};
+        p2 = new String[] {"B"};
         p3 = 2;
         all_right = KawigiEdit_RunTest(3, p0, p1, p2, true, p3) && all_right;
         // ------------------
 
         // ----- test 4 -----
-        p0 = new String[]{"ABCABDEGAXAHDJBAAHFJDXBB", "ABHFHCDALFDJDBBA", "BABBAXAXXX"};
-        p1 = new String[]{"ABLOCBAXBAHAJDXBIJKA", "JBABCDAHKFIUDALPJAH", "AABACX"};
-        p2 = new String[]{"AXBADXBBAB", "CDD"};
+        p0 = new String[] {"ABCABDEGAXAHDJBAAHFJDXBB", "ABHFHCDALFDJDBBA", "BABBAXAXXX"};
+        p1 = new String[] {"ABLOCBAXBAHAJDXBIJKA", "JBABCDAHKFIUDALPJAH", "AABACX"};
+        p2 = new String[] {"AXBADXBBAB", "CDD"};
         p3 = 23;
         all_right = KawigiEdit_RunTest(4, p0, p1, p2, true, p3) && all_right;
         // ------------------

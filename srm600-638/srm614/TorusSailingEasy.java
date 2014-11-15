@@ -61,8 +61,12 @@ public class TorusSailingEasy {
                     max = i;
                 }
             }
-            double[] temp = A[p]; A[p] = A[max]; A[max] = temp;
-            double   t    = b[p]; b[p] = b[max]; b[max] = t;
+            double[] temp = A[p];
+            A[p] = A[max];
+            A[max] = temp;
+            double   t    = b[p];
+            b[p] = b[max];
+            b[max] = t;
 
             // singular or nearly singular
             if (Math.abs(A[p][p]) <= EPSILON) {

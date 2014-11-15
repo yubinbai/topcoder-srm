@@ -67,37 +67,37 @@ public class MountainRanges {
         int p1;
 
         // ----- test 0 -----
-        p0 = new int[]{5, 6, 2, 4};
+        p0 = new int[] {5, 6, 2, 4};
         p1 = 2;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new int[]{1, 1, 1, 1, 1, 1, 1};
+        p0 = new int[] {1, 1, 1, 1, 1, 1, 1};
         p1 = 0;
         all_right = KawigiEdit_RunTest(1, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new int[]{2, 1};
+        p0 = new int[] {2, 1};
         p1 = 1;
         all_right = KawigiEdit_RunTest(2, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new int[]{2, 5, 3, 7, 2, 8, 1, 3, 1};
+        p0 = new int[] {2, 5, 3, 7, 2, 8, 1, 3, 1};
         p1 = 4;
         all_right = KawigiEdit_RunTest(3, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 4 -----
-        p0 = new int[]{1};
+        p0 = new int[] {1};
         p1 = 1;
         all_right = KawigiEdit_RunTest(4, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 5 -----
-        p0 = new int[]{1, 2, 3, 4, 4, 3, 2, 1};
+        p0 = new int[] {1, 2, 3, 4, 4, 3, 2, 1};
         p1 = 0;
         all_right = KawigiEdit_RunTest(5, p0, true, p1) && all_right;
         // ------------------

@@ -14,7 +14,7 @@ import java.math.*;
 public class GraphWalkWithProbabilities {
     /**
      * iterate until numbers are stable
-     * 
+     *
      * @param  graph    [description]
      * @param  winprob  [description]
      * @param  loseprob [description]

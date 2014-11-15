@@ -18,7 +18,7 @@ public class CeyKaps {
             m.put(to, a);
         }
         HashMap<Character, Character> m2 = new HashMap<Character, Character>();
-        for(Character c : m.keySet()){
+        for(Character c : m.keySet()) {
             m2.put(m.get(c), c);
         }
 

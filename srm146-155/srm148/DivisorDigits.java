@@ -10,8 +10,8 @@ public class DivisorDigits {
             used[c - '0']++;
         }
         int res = 0;
-        for(int i = 1;i<10;i++){
-            if (used[i] != 0 && number % i == 0){
+        for(int i = 1; i<10; i++) {
+            if (used[i] != 0 && number % i == 0) {
                 res += used[i];
             }
         }

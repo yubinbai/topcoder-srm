@@ -5,8 +5,48 @@ import java.math.*;
 
 
 public class ICPCBalloons {
-    public int minRepaintings(int[] balloonCount, String balloonSize, int[] maxAccepted) {
-
+    public int minRepaintings(int[] b, String sz, int[] a)
+    {
+        int n = a.length;
+        int ans = 1000000000;
+        Arrays.sort(a);
+        ArrayList<Integer> s1 = new ArrayList<Integer>();
+        ArrayList<Integer> s2 = new ArrayList<Integer>();
+        // totals of medium and large balloons
+        int total1 = 0, total2 = 0;
+        for (int i = 0; i < b.length; ++i) {
+            if (sz.charAt(i) == 'M') {
+                s1.add(b[i]);
+                total1 += b[i];
+            } else {
+                s2.add(b[i]);
+                total2 += b[i];
+            }
+        }
+        Collections.sort(s1);
+        Collections.sort(s2);
+        Collections.reverse(s1);
+        Collections.reverse(s2);
+        // bitmask, brute-force
+        for (int mask = 0; mask < 1 << n; ++mask) {
+            int sum1 = 0, sum2 = 0, c1 = 0, c2 = 0;
+            int cur = 0;
+            for (int i = n - 1; i >= 0; --i) {
+                if ((mask & (1 << i)) == 0) {
+                    sum1 += a[i];
+                    cur += Math.max(0, a[i] - (c1 < s1.size() ? s1.get(c1) : 0));
+                    c1++;
+                } else {
+                    sum2 += a[i];
+                    cur += Math.max(0, a[i] - (c2 < s2.size() ? s2.get(c2) : 0));
+                    c2++;
+                }
+            }
+            if (sum1 <= total1 && sum2 <= total2) {
+                ans = Math.min(ans, cur);
+            }
+        }
+        return ans == 1000000000 ? -1 : ans;
     }
 
     // BEGIN KAWIGIEDIT TESTING

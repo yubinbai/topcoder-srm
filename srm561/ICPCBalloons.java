@@ -25,21 +25,19 @@ public class ICPCBalloons {
         }
         Collections.sort(s1);
         Collections.sort(s2);
-        Collections.reverse(s1);
-        Collections.reverse(s2);
         // bitmask, brute-force
         for (int mask = 0; mask < 1 << n; ++mask) {
-            int sum1 = 0, sum2 = 0, c1 = 0, c2 = 0;
+            int sum1 = 0, sum2 = 0, c1 = s1.size() - 1, c2 = s2.size() - 1;
             int cur = 0;
             for (int i = n - 1; i >= 0; --i) {
                 if ((mask & (1 << i)) == 0) {
                     sum1 += a[i];
-                    cur += Math.max(0, a[i] - (c1 < s1.size() ? s1.get(c1) : 0));
-                    c1++;
+                    cur += Math.max(0, a[i] - (c1 >= 0 ? s1.get(c1) : 0));
+                    c1--;
                 } else {
                     sum2 += a[i];
-                    cur += Math.max(0, a[i] - (c2 < s2.size() ? s2.get(c2) : 0));
-                    c2++;
+                    cur += Math.max(0, a[i] - (c2 >= 0 ? s2.get(c2) : 0));
+                    c2--;
                 }
             }
             if (sum1 <= total1 && sum2 <= total2) {

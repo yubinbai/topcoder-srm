@@ -7,50 +7,64 @@ import java.math.*;
 public class Stamp {
     static final int INF = (int) 1e9;
 
+    /**
+     * nice use of bitmask, determine whether a color can be used for a series of cells
+     *
+     * try all length, dp on each length to get best solution
+     *
+     * min of all solutions
+     * 
+     * @param desiredColor
+     * @param stampCost
+     * @param pushCost
+     * @return
+     */
     public int getMinimumCost(String desiredColor, int stampCost, int pushCost) {
         int n = desiredColor.length();
-        int[] colors = new int[n];
-        for (int i = 1; i < n; ++i) colors[i] = "RGB".indexOf(desiredColor.charAt(i));
-        int res = Integer.MAX_VALUE;
-        for (int len = 1; len <= n; ++len) {
-            int[][] best = new int[n + 1][3];
-            for (int[] x : best) Arrays.fill(x, INF);
-            for (int firstColor = 0; firstColor < 3; ++firstColor) {
-                boolean valid = true;
-                for (int i = 0; i < len; ++i)
-                    if (colors[i] >= 0 && colors[i] != firstColor)
-                        valid = false;
-                if (valid)
-                    best[len][firstColor] = 1;
-            }
-            for (int pos = len; pos < n; ++pos)
-                for (int lastColor = 0; lastColor < 3; ++lastColor) {
-                    int lastBest = best[pos][lastColor];
-                    if (lastBest >= INF) continue;
-                    for (int protrude = 1; protrude < len && pos + protrude <= n; ++protrude) {
-                        if (colors[pos + protrude - 1] >= 0 && colors[pos + protrude - 1] != lastColor) {
-                            break;
-                        }
-                        best[pos + protrude][lastColor] = Math.min(best[pos + protrude][lastColor], lastBest + 1);
-                    }
-                    if (pos + len <= n) {
-                        for (int firstColor = 0; firstColor < 3; ++firstColor) {
-                            boolean valid = true;
-                            for (int i = 0; i < len; ++i)
-                                if (colors[pos + i] >= 0 && colors[pos + i] != firstColor)
-                                    valid = false;
-                            if (valid)
-                                best[pos + len][firstColor] = Math.min(best[pos + len][firstColor], lastBest + 1);
-                        }
-                    }
-                }
-            for (int lastColor = 0; lastColor < 3; ++lastColor) {
-                if (best[n][lastColor] < INF) {
-                    res = Math.min(res, best[n][lastColor] * pushCost + len * stampCost);
-                }
+        int[] mask = new int[n];
+        for (int i = 0; i < n; i++) {
+            switch (desiredColor.charAt(i)) {
+                case 'R':
+                    mask[i] = 1;
+                    break;
+                case 'G':
+                    mask[i] = 2;
+                    break;
+                case 'B':
+                    mask[i] = 4;
+                    break;
+                default:
+                    mask[i] = 7;
+                    break;
             }
         }
-        return res;
+        int ans = INF;
+        for (int len = 1; len <= n; len++) {
+            int[] dp = new int[n + 1];
+            Arrays.fill(dp, INF);
+            dp[0] = 0;
+            for (int i = 0; i < n; i++) {
+                int curr = 7;
+                for (int next = i; next < n; next++) {
+                    curr &= mask[next];
+                    if (curr == 0) break;
+
+                    int currLen = (next - i + 1);
+                    if (currLen < len) {
+                        continue;
+                    } else {
+                        int currOps = (currLen + len - 1) / len;
+                        dp[next + 1] = Math.min(
+                                dp[next + 1],
+                                dp[i] + currOps * pushCost
+                        );
+                    }
+
+                }
+            }
+            ans = Math.min(ans, dp[n] + len * stampCost);
+        }
+        return ans;
     }
 
     // BEGIN KAWIGIEDIT TESTING

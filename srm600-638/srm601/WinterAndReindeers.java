@@ -4,7 +4,8 @@ public class WinterAndReindeers {
     /**
      * SRM 601
      * LCS with additional constraints
-     * dp[lenA][lenB][progress of C]
+     *
+     * Construct solutions from segments
      *
      * @param allA
      * @param allB
@@ -57,8 +58,10 @@ public class WinterAndReindeers {
             }
         }
 
+        // construct the three solution by three segments
+        // 1. find the middle segment, from A, from B, that covers everything in C
+        // 2. find the longest common subsequence of the head and tail of A and B
         int ret = 0;
-
         for (int i = 0; i < foundA.size(); i += 2) {
             for (int j = 0; j < foundB.size(); j += 2) {
                 int fa1 = foundA.get(i);
@@ -69,12 +72,20 @@ public class WinterAndReindeers {
             }
         }
 
-        System.out.println(foundA);
-        System.out.println(foundB);
-        System.out.println();
+        // System.out.println(foundA);
+        // System.out.println(foundB);
+        // System.out.println();
         return ret;
     }
 
+    /**
+     * find ranges of S where C is fully contained
+     * @param  S
+     * @param  C
+     * @param  sn
+     * @param  cn
+     * @return
+     */
     public Vector<Integer> findAll(char[] S, char[] C, final int sn, final int cn) {
         Vector<Integer> found = new Vector<Integer>();
 

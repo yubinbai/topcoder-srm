@@ -8,11 +8,15 @@ public class FoxPaintingBalls {
     public long theMax(long R, long G, long B, int N) {
         if (N == 1) return R + G + B;
         long total = (1 + N) * N / 2;
-        long sm = total / 3;
-        long bg = total % 3 == 0 ? sm : sm + 1;
-        long[] balls = new long[]{R, G, B};
+        long each = total / 3;
+        long[] balls = new long[] {R, G, B};
         Arrays.sort(balls);
-        return Math.min(balls[0] / sm, balls[2] / bg);
+        if (total % 3 == 0) {
+            return balls[0] / each;
+        } else {
+            long m = (R + G + B) / total;
+            return Math.min(m, balls[0] / each);
+        }
     }
 
     // BEGIN KAWIGIEDIT TESTING

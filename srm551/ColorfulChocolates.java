@@ -6,6 +6,7 @@ import java.math.*;
 
 public class ColorfulChocolates
 {
+    public static int INF = (int) 1e9;
 	public int maximumSpread(String chocolates, int maxSwaps)
 	{
 		int n = chocolates.length();
@@ -13,18 +14,59 @@ public class ColorfulChocolates
         for (int i = 0; i < n; i++) {
             count[chocolates.charAt(i)]++;
         }
-        int ret = 0;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 300; i++) {
-            if (count[i] != 0) {
-                sb = new StringBuilder();
-                for (int j = 1; j <= count[i]; j++) {
-                    sb.append((char) i);
-                    if (chocolates.contains(sb.toString())) {
-                        int curr = Math.min(count[i], j + maxSwaps);
-                        ret = Math.max(curr, ret);
+        int[] retSwap = new int[2550];
+        Arrays.fill(retSwap, INF);
+        for (int i = 'A'; i <= 'Z'; i++) {
+            if (count[i] > 0) {
+                ArrayList<Integer> pos = new ArrayList<Integer>();
+                // find all pos of the same char
+                for (int j = 0; j < n; j++) {
+                    if (chocolates.charAt(j) == i) {
+                        pos.add(j);
                     }
                 }
+
+                // enum all center pos, construct solution
+                for (int j = 0; j < pos.size(); j++) {
+                    int swaps = 0;
+                    int left = j - 1;
+                    int right = j + 1;
+                    while (left >= 0 || right < n) {
+                        int leftCost = INF, rightCost = INF;
+                        if (left >= 0) {
+                            leftCost = pos.get(j) - pos.get(left) - (j - left);
+                        }
+                        if (right < pos.size()) {
+                            rightCost = pos.get(right) - pos.get(j) - (right - j);
+                        }
+                        int cost;
+                        if (leftCost != INF || rightCost != INF) {
+                            if (leftCost < rightCost) {
+                                cost = leftCost;
+                                left--;
+                            } else {
+                                cost = rightCost;
+                                right++;
+                            }
+                            swaps += cost;
+                            if (swaps <= maxSwaps) {
+                                int len = right - left - 1;
+                                retSwap[len] = Math.min(retSwap[swaps], swaps);
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+        }
+        int ret = 1;
+        for (int i = retSwap.length - 1; i >= 0; i--) {
+            if (retSwap[i] != INF) {
+                ret = i;
+                break;
             }
         }
         return ret;
@@ -74,21 +116,21 @@ public class ColorfulChocolates
 		int p1;
 		int p2;
 		
-		// ----- test 0 -----
-		p0 = "ABCDCBC";
-		p1 = 1;
-		p2 = 2;
-		all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
-		// ------------------
-		
 		// ----- test 1 -----
 		p0 = "ABCDCBC";
 		p1 = 2;
 		p2 = 3;
 		all_right = KawigiEdit_RunTest(1, p0, p1, true, p2) && all_right;
 		// ------------------
-		
-		// ----- test 2 -----
+
+        // ----- test 0 -----
+        p0 = "ABCDCBC";
+        p1 = 1;
+        p2 = 2;
+        all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
+        // ------------------
+
+        // ----- test 2 -----
 		p0 = "ABBABABBA";
 		p1 = 3;
 		p2 = 4;

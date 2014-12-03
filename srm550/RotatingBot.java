@@ -23,22 +23,26 @@ public class RotatingBot {
                 c += direct[currD][1];
                 if (board[r][c]) return -1;
                 board[r][c] = true;
-                minR = Math.min(minR, r);
-                minC = Math.min(minC, c);
-                maxR = Math.max(maxR, r);
-                maxC = Math.max(maxC, c);
+                if (k == 0) {
+                    maxC = Math.max(maxC, c);
+                }
+                if (k == 1) {
+                    minR = Math.min(minR, r);
+                }
+                if (k == 2) {
+                    minC = Math.min(minC, c);
+                }
+                if (k == 3) {
+                    if (c > minC) return -1;
+                    maxR = Math.max(maxR, r);
+                }
+                if (r < minR || r > maxR || c < minC || c > maxC) return -1;
             }
 
-            int nextR = r + direct[currD][0];
-            int nextC = c + direct[currD][1];
-            if (nextR <= maxR
-                    && nextR >= minR
-                    && nextC <= maxC
-                    && nextC >= minC
-                    && !board[nextR][nextC]
-                    && (k + 1) < moves.length
-                    ) {
-                return -1;
+            int rr = r + direct[currD][0];
+            int cc = c + direct[currD][1];
+            if (rr <= maxR && rr >= minR && cc <= maxC && cc >= minC && !board[rr][cc]) {
+                if (k != moves.length - 1) return -1;
             }
             currD++;
             currD %= 4;
@@ -96,6 +100,12 @@ public class RotatingBot {
 
         int[] p0;
         int p1;
+        // ----- test 7 -----
+        p0 = new int[]{4, 22, 16, 27, 15, 4, 14, 3, 13, 2, 12, 1, 11};
+        p1 = -1;
+        all_right = KawigiEdit_RunTest(7, p0, true, p1) && all_right;
+        // ------------------
+
         // ----- test 7 -----
         p0 = new int[]{1, 2, 3, 4, 5};
         p1 = -1;

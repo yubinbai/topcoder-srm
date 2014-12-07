@@ -8,7 +8,23 @@ public class PillarsDivTwo
 {
 	public double maximalLength(int[] height, int w)
 	{
-		
+        int n = height.length;
+        double[][] dp = new double[n + 1][101];
+        for (int i = 1; i < n; i++) {
+            for (int h = 1; h <= height[i]; h++) {
+                for (int hh = 1; hh <= height[i - 1]; hh++) {
+                    dp[i][h] = Math.max(
+                            dp[i][h],
+                            dp[i - 1][hh] + Math.hypot(w, Math.abs(hh - h))
+                    );
+                }
+            }
+        }
+        double ret = 0.0;
+        for (int i = 1; i <= height[n - 1]; i++) {
+            ret = Math.max(ret, dp[n - 1][i]);
+        }
+        return ret;
 	}
 	
 	// BEGIN KAWIGIEDIT TESTING
@@ -63,10 +79,10 @@ public class PillarsDivTwo
 		double p2;
 		
 		// ----- test 0 -----
-		p0 = new int[]{3,3,3};
-		p1 = 2;
-		p2 = 5.656854249492381D;
-		all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
+//		p0 = new int[]{3,3,3};
+//		p1 = 2;
+//		p2 = 5.656854249492381D;
+//		all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
 		// ------------------
 		
 		// ----- test 1 -----

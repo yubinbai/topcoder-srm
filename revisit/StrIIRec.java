@@ -3,10 +3,43 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * SRM 545
+ *
+ * Construct solution with counting on each step
+ * greedy, search, pruning
+ */
 public class StrIIRec {
     public String recovstr(int n, int minInv, String minStr) {
-        return "";
+        char A[] = new char[n];
+        boolean used[] = new boolean[n];
+        int vn = minInv;
+        boolean isChanged = false;
+        for (int i = 0; i < n; i++) {
+            int j = (!isChanged && minStr.length() > i) ? minStr.charAt(i) - 'a' : 0;
+            for (; j < n; j++) {
+                if (used[j]) continue;
+
+                // count invs if using this one
+                int t = 0;
+                for (int k = 0; k < j; k++) {
+                    if (!used[k]) t++;
+                }
+
+                if ((n - i - 1) * (n - i - 2) / 2 + t < vn) {
+                    // invs not possible to be filled by future placements
+                    continue;
+                } else {
+                    // this is the lexically smallest solution
+                    used[j] = true;
+                    vn -= t;
+                    A[i] = (char) ('a' + j);
+                    if (minStr.length() > i && j > minStr.charAt(i) - 'a') isChanged = true;
+                    break;
+                }
+            }
+        }
+        return String.valueOf(A);
     }
 
     // BEGIN KAWIGIEDIT TESTING

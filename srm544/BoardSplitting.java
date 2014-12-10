@@ -8,8 +8,11 @@ public class BoardSplitting
 {
 	public int minimumCuts(int desiredLength, int desiredCount, int actualLength)
 	{
-		int total = desiredCount * desiredLength;
-        int minActual = (int) Math.ceil(1.0 * total / actualLength);
+        int cut = 0;
+        for (int i = 1; i <= desiredCount; i++) {
+            if ((i * desiredLength) % actualLength != 0) cut++;
+        }
+        return cut;
 	}
 	
 	// BEGIN KAWIGIEDIT TESTING

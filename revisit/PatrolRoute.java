@@ -3,7 +3,9 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * srm 542
+ */
 public class PatrolRoute {
     private static final long MOD = 1000000007;
 
@@ -18,13 +20,18 @@ public class PatrolRoute {
                     answer += countX[i] * countY[j] % MOD;
             }
         }
-        answer *= 6;
+        answer *= 6; // 3!
         return (int) (answer % MOD);
     }
-
+    /**
+     * All Column/Row arrangement for [0, upto)
+     * @param  upTo [description]
+     * @return      [description]
+     */
     private long[] go(int upTo) {
         long[] result = new long[upTo];
         for (int i = 0; i < upTo; i++) {
+            // at least 3 cols/rows
             for (int j = i + 2; j < upTo; j++)
                 result[j - i] += j - i - 1;
         }

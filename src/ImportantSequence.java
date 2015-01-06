@@ -8,7 +8,27 @@ public class ImportantSequence
 {
 	public int getCount(int[] B, String operators)
 	{
-		return 0;
+		int n = B.length;
+		int INF = (int) 1e9;
+		boolean[] plusX = new boolean[n + 1];
+		long[] coef = new long[n + 1];
+		plusX[0] = true;
+		coef[0] = 0;
+		for (int i = 1; i < n; i++) {
+			// build up inequality
+
+		}
+		long max = INF, min = 0;
+		for (int i = 0; i <= n; i++) {
+			// determin max and min from inequality
+
+		}
+
+		if (min >= max) {
+			return -1;
+		} else {
+			return (int) (max - min - 1) % ;
+		}
 	}
 	
 	// BEGIN KAWIGIEDIT TESTING

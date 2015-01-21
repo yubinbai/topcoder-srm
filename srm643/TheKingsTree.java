@@ -12,13 +12,9 @@ public class TheKingsTree {
     int[] p;
     public int getNumber(int[] parent) {
         p = parent;
-        for (int i = 0; i < 51; ++i) {
-            for (int j = 0; j < 51; ++j) {
-                for (int k = 0; k < 51; ++k) {
-                    mem[i][j][k] = -1;
-                }
-            }
-        }
+        for (int[][] a : mem) 
+            for (int[] aa : a)
+                Arrays.fill(aa, -1);
         for (int i = 0; i < 51; ++i) {
             t.add(new ArrayList<Integer>());
         }
@@ -26,7 +22,11 @@ public class TheKingsTree {
             t.get(p[i]).add(i + 1);
         }
 
-        return solve(0, 0, 0) + p.length + 1;
+        // parent-attached cost of painting the tree under the node 
+        int ret = solve(0, 0, 0);
+        // cost of painting the nodes themselves
+        ret += p.length + 1;
+        return ret;
     }
     int solve(int c, int r, int g) {
         if (mem[c][r][g] != -1)

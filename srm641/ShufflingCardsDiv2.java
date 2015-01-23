@@ -51,15 +51,15 @@ public class ShufflingCardsDiv2
                 }
             }
         }
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0 && second[i] > n) {
+        for (int i = n; i < 2 * n; i++) {
+            if (i % 2 == 0 && second[i % n] > n) {
                 boolean found = false;
-                for (int j = i + 1; j < n; j+= 2) {
-                    if (second[j] <= n) {
+                for (int j = i + 1; j < 2 * n; j+= 2) {
+                    if (second[j % n] <= n) {
                         found = true;
-                        int t = second[i];
-                        second[i] = second[j];
-                        second[j] = t;
+                        int t = second[i % n];
+                        second[i % n] = second[j % n];
+                        second[j % n] = t;
                         break;
                     }
                 }
@@ -67,14 +67,14 @@ public class ShufflingCardsDiv2
                     ret = false;
                     break;
                 }
-            } else if (i % 2 == 1 && second[i] <= n) {
+            } else if (i % 2 == 1 && second[i % n] <= n) {
                 boolean found = false;
-                for (int j = i + 1; j < n; j+= 2) {
-                    if (second[j] > n) {
+                for (int j = i + 1; j < 2 * n; j+= 2) {
+                    if (second[j % n] > n) {
                         found = true;
-                        int t = second[i];
-                        second[i] = second[j];
-                        second[j] = t;
+                        int t = second[i % n];
+                        second[i % n] = second[j % n];
+                        second[j % n] = t;
                         break;
                     }
                 }

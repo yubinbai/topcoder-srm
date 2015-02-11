@@ -11,13 +11,15 @@ public class ABC {
     int N, K;
     boolean found = false;
     String ret = "";
+    boolean[][][] failed;
     public String createString(int N, int K) {
         this.N = N;
+        failed = new boolean[K + 1][N + 1][N + 1];
         backtrack(K, 0, 0);
         return found ? ret : "";
     }
     private void backtrack(int k, int na, int nb) {
-        if (found) {
+        if (found || failed[k][na][nb]) {
             return;
         }
         if (k == 0 && s.size() == N) {
@@ -42,6 +44,7 @@ public class ABC {
                 backtrack(k - na - nb, na, nb);
                 s.pop();
             }
+            failed[k][na][nb] = true;
         }
     }
 
@@ -120,7 +123,7 @@ public class ABC {
         // ----- test 3 -----
         p0 = 23;
         p1 = 213;
-        p2 = "CABBACCBAABCBBB";
+        p2 = "";
         all_right = KawigiEdit_RunTest(3, p0, p1, true, p2) && all_right;
         // ------------------
 

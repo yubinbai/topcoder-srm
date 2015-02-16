@@ -33,6 +33,7 @@ public class PatrolRoute {
         for (int i = 0; i < upTo; i++) {
             // at least 3 cols/rows
             for (int j = i + 2; j < upTo; j++)
+                // get there in two steps
                 result[j - i] += j - i - 1;
         }
         return result;

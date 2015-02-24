@@ -91,10 +91,10 @@ public class WinterAndReindeers {
 
         for (int i = 0; i < sn; i++) {
             if (S[i] == C[0]) {
-                int temp = substring(S, C, sn, cn, i + 1);
-                if (temp != -1) {
+                int lastI = substring(S, C, sn, cn, i + 1);
+                if (lastI != -1) {
                     found.add(i);
-                    found.add(temp);
+                    found.add(lastI);
                 }
             }
         }

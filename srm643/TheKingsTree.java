@@ -32,11 +32,9 @@ public class TheKingsTree {
         if (mem[c][r][g] != -1)
             return mem[c][r][g];
         int ans1 = r;
-        for (int i = 0; i < t.get(c).size(); i++)
-            ans1 += solve(t.get(c).get(i), r + 1, g);
+        for (int child : t.get(c)) ans1 += solve(child, r + 1, g);
         int ans2 = g;
-        for (int i = 0; i < t.get(c).size(); i++)
-            ans2 += solve(t.get(c).get(i), r, g + 1);
+        for (int child : t.get(c)) ans2 += solve(child, r, g + 1);
         return mem[c][r][g] = Math.min(ans1, ans2);
     }
 

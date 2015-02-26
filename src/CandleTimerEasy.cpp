@@ -1,4 +1,108 @@
-import java.util.*;
+#line 5 "CandleTimerEasy.cpp" 
+#include<bits/stdc++.h> 
+using namespace std; 
+#define pb push_back 
+#define mp make_pair 
+#define X first 
+#define Y second 
+#define fill(A) memset(A,0,sizeof(A)) 
+#define Copy(A,B) memcpy(A,B,sizeof(A)) 
+#define rep(i,A,B) for(int i=A;i<=(int)(B);i++) 
+#define per(i,B,A) for(int i=B;i>=(int)(A);i--) 
+#define RE(B,A) for(A::iterator it=B.begin();it!=B.end();++it) 
+#define re(i,A) for(int i=0;i<(int)(A);i++) 
+#define de(i,A) for(int i=A;i+1;i--) 
+#define re1(i,A) for(int i=1;i<(int)(A);i++) 
+#define For(i,A,B) for(int i=A;i<B;i++) 
+#define all(x) (x).begin(),(x).end() 
+#define inf (1<<30) 
+#define Mod 10000007 
+#define mn 1000111 
+#define pi acos(-1) 
+#define eps (1e-6) 
+#define MAX(A,B) A=max(A,B) 
+#define MIN(A,B) A=min(A,B) 
+#define sqr(x) ((x)*(x)) 
+#define lowbit(x) ((x)&-(x)) 
+typedef long long ll; 
+typedef pair<int,int> pii; 
+typedef map<int,int> mii; 
+
+const int nn=10000; 
+vector<int> E[nn],L[nn]; 
+int v[nn],inq[nn],q[nn],w[nn],d[nn]; 
+int n,ls; 
+queue<int> Q; 
+
+void link(int x,int y,int z) { 
+  E[x].pb(y);L[x].pb(z); 
+  E[y].pb(x);L[y].pb(z); 
+  ++inq[x]; 
+  ++inq[y];   
+} 
+class CandleTimerEasy 
+{ 
+   public: 
+  int differentTime(vector <int> A, vector <int> B, vector <int> len) 
+  { 
+    n=A.size(); 
+    rep(i,0,n*2) inq[i]=0,E[i].clear(),L[i].clear(),w[i]=0,d[i]=0,v[i]=0; 
+  //  cout<<n<<endl; 
+    rep(i,0,n-1) { 
+      int x=A[i],y=B[i],z=len[i]; 
+      link(x,y,z); 
+    //  link(x,i+n,z); 
+    //  link(i+n,y,z); 
+    } 
+    ls=0; 
+    rep(i,0,n) if (inq[i]==1) q[++ls]=i,w[i]=ls; 
+    if (ls==0) return 2; 
+    map<int,int> ma;ma.clear(); 
+    int ans=0; 
+    rep(mask,1,(1<<ls)-1) { 
+      rep(j,0,n) { 
+        d[j]=1<<29; 
+        v[j]=0; 
+        if (w[j]>0) 
+        if (mask&(1<<(w[j]-1))) { 
+          Q.push(j); 
+          d[j]=0; 
+          v[j]=1; 
+        } 
+      } 
+      while (Q.size()) { 
+        int x=Q.front();v[x]=0;Q.pop(); 
+        for(int i=0;i<E[x].size();++i) { 
+          int j=E[x][i],z=L[x][i]; 
+          if (d[j]>d[x]+z) { 
+            d[j]=d[x]+z; 
+            if (!v[j]) { 
+              v[j]=1;Q.push(j); 
+            } 
+          } 
+        } 
+      } 
+      int mm=0; 
+      rep(i,0,n-1) { 
+        int x=A[i],y=B[i],z=len[i]; 
+        mm=max(mm,d[x]+d[y]+z);   
+      } 
+      if (!ma[mm]) { 
+        ma[mm]=1,ans++; 
+    //    if (mm==1) cout<<' '<<' '<<mask<<endl; 
+    //    cout<<mm<<endl; 
+      } 
+    } 
+    return ans; 
+  }  
+   
+
+}; 
+
+
+// Powered by FileEdit
+// Powered by TZTester 1.01 [25-Feb-2003]
+// Powered by CodeProcessorimport java.util.*;
 import java.util.regex.*;
 import java.text.*;
 import java.math.*;

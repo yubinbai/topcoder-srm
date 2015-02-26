@@ -5,11 +5,11 @@ import java.math.*;
 
 
 public class CandleTimerEasy {
+    public static int MAX_INT = (int) 1e9;
     /**
-     * 1. double the len so we don't get half integers
-     * 2. find all pairs shortest paths
-     * 3. enum all lighting schemes, simulate with the paths' length
-     * find out the longest time of all paths
+     * 1. find all leaf nodes, enum all lighting schemes
+     * 2. for each lighting scheme, find the earliest discover time of all nodes
+     * 3. the time spent equals to 0.5 * max(d[u] + d[v] + dist[u][v]) for all edge(u,v)
      * 4. get results in hashset
      *
      * @param A   [description]
@@ -19,47 +19,50 @@ public class CandleTimerEasy {
      */
     public int differentTime(int[] A, int[] B, int[] len) {
         int n = A.length + 1;
-        int[][] dist = new int[n][n];
+        int[][] edge = new int[n][n];
         int[] degree = new int[n];
-        for (int[] arr : dist) {
-            Arrays.fill(arr, (int) 1e9);
-        }
-        for (int i = 0; i < n; i++) {
-            dist[i][i] = 0;
-        }
         for (int i = 0; i < A.length; i++) {
-            dist[A[i]][B[i]] = dist[B[i]][A[i]] = 2 * len[i];
+            edge[A[i]][B[i]] = edge[B[i]][A[i]] = len[i];
             degree[A[i]]++;
             degree[B[i]]++;
         }
-        for (int k = 0; k < n; k++) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
-                }
-            }
+        int nLeaves = 0;
+        for (int d : degree) {
+            if (d == 1) nLeaves++;
         }
         HashSet<Integer> results = new HashSet<Integer>();
-        for (int bitmask = 1; bitmask < (1 << n); bitmask++) {
-            if (bitmask == (1 << n) - 2) {
-                int a = 1;
-            }
-            int curr = -1;
-            for (int i = 0; i < n; i++) {
-                if ((bitmask & (1 << i)) == 0 || degree[i] != 1) {
-                    continue;
+        for (int bitmask = 1; bitmask < (1 << nLeaves); bitmask++) {
+            int[] dist = new int[n];
+            Arrays.fill(dist, MAX_INT);
+            ArrayDeque<Integer> q = new ArrayDeque<Integer>();
+
+            int currLeaf = 0;
+            for (int i = 0; i < n; ++i) {
+                if (degree[i] == 1) {
+                    if ((bitmask & (1 << currLeaf)) != 0) {
+                        dist[i] = 0;
+                        q.offerLast(i);
+                    }
+                    currLeaf++;
                 }
-                for (int j = i + 1; j < n; j++) {
-                    if (degree[j] != 1) continue;
-                    if ((bitmask & (1 << j)) != 0) {
-                        curr = Math.max(curr, dist[i][j] / 2);
-                    } else {
-                        curr = Math.max(curr, dist[i][j]);
+            }
+            while (!q.isEmpty()) {
+                int curr = q.pollFirst();
+                for (int i = 0; i < n; ++i) {
+                    if (edge[curr][i] != 0) {
+                        if (dist[i] > dist[curr] + edge[curr][i]) {
+                            dist[i] = dist[curr] + edge[curr][i];
+                            q.offerLast(i);
+                        }
                     }
                 }
             }
-            if (curr != -1) {
-                results.add(curr);
+            int currMax = 0;
+            for (int i = 0; i < A.length; ++i) {
+                currMax = Math.max(currMax, dist[A[i]] + dist[B[i]] + len[i]);
+            }
+            if (currMax != 0) {
+                results.add(currMax);
             }
         }
         return results.size();

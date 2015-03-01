@@ -21,14 +21,13 @@
 using namespace std;
 
 class Node {
-
 public:
     char c;
     int w;
     Node(char cc, int ww)
     {
-        this->c = cc;
-        this->w = ww;
+        c = cc;
+        w = ww;
     }
     bool operator < (const Node& rhs) const
     {
@@ -43,7 +42,7 @@ class ConnectingGameDiv2 {
 public:
     map<char, set<char> > adjList;
     map<char, int> weight;
-    int minCost = (int) 1e9;
+
     const int direct[8][2] = {{0, 1} ,{1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1},{-1, 0}, {-1, 1} };
     int n, m;
     int MAX_INT = (int) 1e9;
@@ -61,8 +60,7 @@ public:
             adjList[start].insert(board[i][0]);
             adjList[board[i][m - 1]].insert(end);
         }
-        dijkstra(start, end);
-        return minCost;
+        return dijkstra(start, end);
     }
     void floodfill(vector<string> board, int r, int c) {
         seen[r][c] = true;
@@ -84,7 +82,7 @@ public:
             }
         }
     }
-    void dijkstra(char start, char end) {
+    int dijkstra(char start, char end) {
         priority_queue<Node> q;
         map<char, int> dist;
         q.push(Node(start, 0));
@@ -109,7 +107,7 @@ public:
                 }
             }
         }
-        minCost = dist[end];
+        return dist[end];
     }
 };
 

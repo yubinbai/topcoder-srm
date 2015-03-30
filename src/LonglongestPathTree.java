@@ -10,7 +10,7 @@ public class LonglongestPathTree
 {
 	public long getLength(int[] A, int[] B, int[] L)
 	{
-		
+		return 0L;
 	}
 	
 	// BEGIN KAWIGIEDIT TESTING

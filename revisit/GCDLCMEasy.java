@@ -9,8 +9,7 @@ import java.math.*;
 public class GCDLCMEasy {
 	int[] value;
 	int n;
-	HashMap<Integer, HashMap<Integer, Integer>> gcd;
-	HashMap<Integer, HashMap<Integer, Integer>> lcm;
+	HashMap<Integer, HashMap<Integer, Integer>> gcd, lcm;
 
 	public String possible(int n, int[] A, int[] B, int[] G, int[] L) {
 		this.n = n;
@@ -41,7 +40,7 @@ public class GCDLCMEasy {
 		value = new int[n];
 		Arrays.fill(value, -1);
 		for (int i = 0; i < n; i++) {
-			if (value[i] == -1) {
+			if (value[i] == -1 && gcd.get(i) != null) {
 				for (value[i] = 1; value[i] <= 10000; value[i]++) {
 					int[] backup = new int[n];
 					System.arraycopy(value, 0, backup, 0, value.length);
@@ -58,7 +57,6 @@ public class GCDLCMEasy {
 		return ret ? "Solution exists" : "Solution does not exist";
 	}
 	public boolean dfs(int curr) {
-		if (gcd.get(curr) == null) return true;
 		for (Integer child : gcd.get(curr).keySet()) {
 			int g = gcd.get(curr).get(child);
 			int l = lcm.get(curr).get(child);

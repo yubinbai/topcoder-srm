@@ -15,7 +15,32 @@ public class PermutationCountsDiv2 {
 		for (int p : pos) {
 			sm[p - 1] = true;
 		}
-		return (int) (result % MOD);
+		int[][] dp = new int[N + 1][N + 1];
+		// dp[i][j]
+		// num ways to fill in first i numbers 1..i with last == j
+		dp[1][1] = 1;
+		for (int i = 2; i <= N; i++) {
+			for (int last = 1; last <= i; last++) {
+				if (sm[i - 2]) {
+					for (int j = last - 1; j >= 1; j--) {
+						dp[i][last] += dp[i - 1][j];
+						dp[i][last] %= MOD;
+					}
+				} else {
+					for (int j = last; j <= i; j++) {
+						dp[i][last] += dp[i - 1][j];
+						dp[i][last] %= MOD;
+					}
+
+				}
+			}
+		}
+		int res = 0;
+		for (int curr : dp[N]) {
+			res += curr;
+			res %= MOD;
+		}
+		return res;
 	}
 
 	// BEGIN KAWIGIEDIT TESTING

@@ -95,6 +95,13 @@ public class PermutationCountsDiv2 {
 		int p2;
 
 		// ----- test 0 -----
+		p0 = 2;
+		p1 = new int[] {};
+		p2 = 1;
+		all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
+		// ------------------
+
+		// ----- test 0 -----
 		p0 = 5;
 		p1 = new int[] {3};
 		p2 = 9;

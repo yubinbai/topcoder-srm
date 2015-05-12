@@ -7,6 +7,7 @@ import java.math.*;
 public class MutaliskEasy {
 	int[][][] memo = new int[61][61][61];
 	static int INF = 100;
+	static int[][] perm = {{1, 3, 9}, {1, 9, 3}, {3, 1, 9}, {3, 9, 1}, {9, 1, 3}, {9, 3, 1}};
 	public int minimalAttacks(int[] x) {
 		for (int[][] arr2 : memo) {
 			for (int[] arr : arr2) {
@@ -28,7 +29,6 @@ public class MutaliskEasy {
 		}
 		int[] input;
 		int result = INF;
-		int[][] perm = new int[][] {{1, 3, 9}, {1, 9, 3}, {3, 1, 9}, {3, 9, 1}, {9, 1, 3}, {9, 3, 1}};
 		for (int[] p : perm) {
 			input = new int[] {a - p[0], b - p[1], c - p[2]};
 			result = Math.min(result, 1 + dp(input));

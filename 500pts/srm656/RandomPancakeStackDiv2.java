@@ -6,6 +6,7 @@ import java.math.*;
 
 public class RandomPancakeStackDiv2
 {
+	// simulation, O(10! = 3e6)
 	public double expectedDeliciousness(int[] d)
 	{
 		int n = d.length;

@@ -37,6 +37,7 @@ public class OneEntrance2 {
 			OUTER: for (int i = 0; i < perm.length; i++) {
 				for (int j = i + 1; j < perm.length; j++) {
 					int x = perm[i], y = perm[j];
+					// permutation should be of a topological sort
 					// no back edge in dfs tree
 					if (dist[s][x] + dist[x][y] == dist[s][y]) {
 						ok = 0;

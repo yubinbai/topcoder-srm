@@ -3,7 +3,9 @@ import java.util.regex.*;
 import java.text.*;
 import java.math.*;
 
-
+/**
+ * srm654
+ */
 public class OneEntrance2 {
 	public int count(int[] a, int[] b, int s) {
 		int n = a.length + 1;

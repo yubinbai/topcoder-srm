@@ -6,30 +6,29 @@ import java.math.*;
 
 public class FoldingPaper2 {
     public int solve(int W, int H, int A) {
-        int t = 0;
-        if (W > H) {
-            t = W;
-            W = H;
-            H = t;
-        }
-        int w = Math.min(W, A);
-        while (w > 1 && A % w != 0) {
-            w--;
-        }
-        if (A / w > H) return -1;
-        int sol = (int) 1e9, h;
-        for (; w >= 1; w--) {
-            if (A % w == 0) {
-                h = A / w;
-                if (h <= H && w <= W) {
-                    sol = Math.min(sol, getFold(w, W) + getFold(h, H));
-                }
-                if (h <= W && w <= H) {
-                    sol = Math.min(sol, getFold(h, W) + getFold(w, H));
-                }
+        List<Integer> wList = new ArrayList<>();
+        List<Integer> hList = new ArrayList<>();
+
+        for (int i = 1; i * i <= A; i++) {
+            if (A % i == 0) {
+                wList.add(A / i);
+                hList.add(i);
             }
         }
-        return sol;
+        int res = Integer.MAX_VALUE;
+        for (int i = 0; i < wList.size(); i++) {
+            int w = wList.get(i);
+            int h = hList.get(i);
+            if (w <= W && h <= H) {
+                res = Math.min(res, getFold(w, W) + getFold(h, H) );
+            }
+            if (h <= W && w <= H) {
+                res = Math.min(res, getFold(h, W) + getFold(h, H) );
+            }
+        }
+        if (res == Integer.MAX_VALUE)
+            return -1;
+        return res;
     }
     int getFold(int a, int b) {
         int fold = 0;

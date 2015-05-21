@@ -10,27 +10,27 @@ public class TaroFillingAStringDiv2
 	{
         final int BIG = (int) 1e7;
 		int n = S.length();
-        int[][] dp = new int[2][n + 1];
-        Arrays.fill(dp[0], BIG);
-        Arrays.fill(dp[1], BIG);
-        dp[0][0] = dp[1][0] = 0;
+        int dp0 = 0, dp1 = 0;
+        int _dp0 = 0, _dp1 = 0;
         for (int i = 0; i < n; i++) {
             switch (S.charAt(i)) {
                 case 'A':
-                    dp[0][i + 1] = Math.min(dp[0][i] + 1, dp[1][i]);
-                    dp[1][i + 1] = BIG;
+                    _dp0 = Math.min(dp0 + 1, dp1);
+                    _dp1 = BIG;
                     break;
                 case 'B':
-                    dp[0][i + 1] = BIG;
-                    dp[1][i + 1] = Math.min(dp[0][i], dp[1][i] + 1);
+                    _dp0 = BIG;
+                    _dp1 = Math.min(dp0, dp1 + 1);
                     break;
                 case '?':
-                    dp[0][i + 1] = Math.min(dp[0][i] + 1, dp[1][i]);
-                    dp[1][i + 1] = Math.min(dp[0][i], dp[1][i] + 1);
+                    _dp0 = Math.min(dp0 + 1, dp1);
+                    _dp1 = Math.min(dp0, dp1 + 1);
                     break;
             }
+            dp0 = _dp0;
+            dp1 = _dp1;
         }
-        return Math.min(dp[0][n], dp[1][n]);
+        return Math.min(dp0, dp1);
     }
 	
 	// BEGIN KAWIGIEDIT TESTING

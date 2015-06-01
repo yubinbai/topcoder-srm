@@ -5,6 +5,8 @@ import java.math.*;
 
 /**
  * srm643
+ *
+ * DP on tree, state is (# of green, # of red) in the root->leaf path
  */
 public class TheKingsTree {
     ArrayList<ArrayList<Integer>> t = new ArrayList<ArrayList<Integer>>();

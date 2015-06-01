@@ -10,20 +10,20 @@ public class LightSwitchingPuzzle
 	{
 		int n = state.length();
         int ret = 0;
-        boolean[] s = new boolean[n];
+        BitSet s = new BitSet(n);
         for (int i = 0; i < n; i++) {
-            s[i] = state.charAt(i) == 'Y';
+            s.set(i, state.charAt(i) == 'Y');
         }
         for (int i = 0; i < n; i++) {
-            if (s[i]) {
+            if (s.get(i)) {
                 ret++;
                 for (int j = i; j < n; j+= (i + 1)) {
-                    s[j] = !s[j];
+                    s.flip(j);
                 }
             }
         }
         for (int i = 0; i < n; i++) {
-            if (s[i]) {
+            if (s.get(i)) {
                 return -1;
             }
         }

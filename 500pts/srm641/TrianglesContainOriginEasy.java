@@ -105,29 +105,29 @@ public class TrianglesContainOriginEasy {
         int p2;
 
         // ----- test 0 -----
-        p0 = new int[]{-1, -1, 1};
-        p1 = new int[]{1, -1, 0};
+        p0 = new int[] { -1, -1, 1};
+        p1 = new int[] {1, -1, 0};
         p2 = 1;
         all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new int[]{-1, -1, 1, 2};
-        p1 = new int[]{1, -1, 2, -1};
+        p0 = new int[] { -1, -1, 1, 2};
+        p1 = new int[] {1, -1, 2, -1};
         p2 = 2;
         all_right = KawigiEdit_RunTest(1, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new int[]{-1, -2, 3, 3, 2, 1};
-        p1 = new int[]{-2, -1, 1, 2, 3, 3};
+        p0 = new int[] { -1, -2, 3, 3, 2, 1};
+        p1 = new int[] { -2, -1, 1, 2, 3, 3};
         p2 = 8;
         all_right = KawigiEdit_RunTest(2, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new int[]{1, 5, 10, 5, -5, 7, -9, -6, -3, 0, 8, 8, 1, -4, 7, -3, 10, 9, -6};
-        p1 = new int[]{5, -6, -3, 4, -2, -8, -7, 2, 7, 4, 2, 0, -4, -8, 7, 5, -5, -2, -9};
+        p0 = new int[] {1, 5, 10, 5, -5, 7, -9, -6, -3, 0, 8, 8, 1, -4, 7, -3, 10, 9, -6};
+        p1 = new int[] {5, -6, -3, 4, -2, -8, -7, 2, 7, 4, 2, 0, -4, -8, 7, 5, -5, -2, -9};
         p2 = 256;
         all_right = KawigiEdit_RunTest(3, p0, p1, true, p2) && all_right;
         // ------------------

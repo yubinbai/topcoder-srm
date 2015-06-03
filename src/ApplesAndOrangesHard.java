@@ -8,7 +8,7 @@ public class ApplesAndOrangesHard
 {
 	public int maximumApples(int N, int K, int[] info)
 	{
-		
+		return 0;
 	}
 	
 	// BEGIN KAWIGIEDIT TESTING

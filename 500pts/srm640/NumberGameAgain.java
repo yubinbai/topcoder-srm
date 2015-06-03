@@ -10,8 +10,7 @@ public class NumberGameAgain
 {
 	public long solve(int k, long[] table)
 	{
-		long all = (1L << k);
-        long ret = all - 2;
+		long ret = (1L << k) - 2;
         Arrays.sort(table);
         int n = table.length;
         for (int i = 0; i < n; i++) {

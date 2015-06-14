@@ -6,30 +6,18 @@ import java.math.*;
 
 public class AliceGameEasy {
     public long findMinimumValue(long x, long y) {
-        long len, len2;
-        long ret = 0;
-        len = getLen(x, y);
-        if (x == 0) {
-            return (len >= 0) ? 0 : -1;
-        }
 
-        while (x > 0) {
-            len = getLen(x, y);
-            if (len > 0) {
-                if (y == 0) return ret + len;
-                len2 = getLen(x - len, y);
-                if (len2 > 0) {
-                    ret++;
-                    x -= len;
-                } else {
-                    y -= len;
-                }
-            } else {
-                return -1;
-            }
-        }
+        long len = getLen(x, y);
+        if (len == -1) return -1;
 
-        return ret;
+        long count = 0L;
+        // greedy, always possible to get x with subset sums
+        while (x > 0 && len >= 1) {
+            x -= len;
+            len--;
+            count++;
+        }
+        return count;
     }
 
     private long getLen(long x, long y) {

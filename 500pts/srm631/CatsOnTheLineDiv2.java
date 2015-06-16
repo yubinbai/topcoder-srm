@@ -8,64 +8,38 @@ import java.math.*;
  *
  */
 public class CatsOnTheLineDiv2 {
+    class Pile implements Comparable<Pile> {
+        int p, c;
+
+        @Override
+        public int compareTo(Pile o) {
+            return Integer.compare(this.p, o.p);
+        }
+    }
     /**
-     * greedy approach to move edges to bost sides as far as possible
+     * greedy approach to move everything left at 2 * t speed
      * @param  position
      * @param  count
      * @param  time
      * @return
      */
     public String getAnswer(int[] position, int[] count, int time) {
-        int left = Integer.MIN_VALUE, right = Integer.MAX_VALUE;
+        int left = Integer.MIN_VALUE;
         int N = position.length;
-        int sum = 0;
-        for (int c : count) {
-            sum += c;
-            /// Consider the case where too many cats in the same spot
-            /// This got me WA first time
-            if (c > 2 * time + 1) return "Impossible";
+        Pile[] piles = new Pile[N];
+        for (int i = 0; i < N; i++) {
+            piles[i] = new Pile();
+            piles[i].p = position[i];
+            piles[i].c = count[i];
         }
-        boolean goLeft = false;
-        for (int c = 0; c < sum; ++c) {
-            goLeft = !goLeft;
-            if (goLeft) {
-                int minI = -1;
-                for (int i = 0; i < N; ++i) {
-                    if (count[i] != 0) {
-                        if (minI == -1) {
-                            minI = i;
-                        } else if (position[i] < position[minI]) {
-                            minI = i;
-                        }
-                    }
-                }
-                if (position[minI] - time > left) {
-                    left = position[minI] - time;
-                } else {
-                    left++;
-                }
-                count[minI]--;
-            } else {
-                // go right
-                int maxI = -1;
-                for (int i = 0; i < N; ++i) {
-                    if (count[i] != 0) {
-                        if (maxI == -1) {
-                            maxI = i;
-                        } else if (position[i] > position[maxI]) {
-                            maxI = i;
-                        }
-                    }
-                }
-                if (position[maxI] + time < right) {
-                    right = position[maxI] + time;
-                } else {
-                    right--;
-                }
-                count[maxI]--;
+        Arrays.sort(piles);
+        for (Pile p : piles) {
+            for (int j = 0; j < p.c; ++j) {
+                left = Math.max(left + 1, p.p - 2 * time);
             }
+            if (left > p.p) return "Impossible";
         }
-        return (left < right) ? "Possible" : "Impossible";
+        return "Possible";
     }
 
     // BEGIN KAWIGIEDIT TESTING

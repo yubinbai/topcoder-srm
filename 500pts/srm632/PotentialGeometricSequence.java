@@ -7,26 +7,15 @@ import java.math.*;
 public class PotentialGeometricSequence {
     public int numberOfSubsequences(int[] d) {
         int size = d.length;
-        ArrayList<Integer> curr;
         int ret = 0;
-        for (int i = 0; i < size; ++i) {
-            curr = new ArrayList<Integer>();
-            for (int j = i; j < size; ++j) {
-                curr.add(d[j]);
-                if (valid(curr)) ret++;
+        for (int i = 0; i < size - 1; ++i) {
+            int dd = d[i + 1] - d[i];
+            for (int j = i + 1; j < size; ++j) {
+                if (d[j] - d[j - 1] == dd) ret++;
                 else break;
             }
         }
-        return ret;
-    }
-    private boolean valid(ArrayList<Integer> arr) {
-        if (arr.size() <= 2) return true;
-        int diff = arr.get(1) - arr.get(0);
-        for (int i = 2; i < arr.size(); ++i) {
-            int diff2 = arr.get(i) - arr.get(i - 1);
-            if (diff != diff2) return false;
-        }
-        return true;
+        return ret + size;
     }
 
     // BEGIN KAWIGIEDIT TESTING

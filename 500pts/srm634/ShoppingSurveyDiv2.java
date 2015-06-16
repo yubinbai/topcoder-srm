@@ -70,7 +70,7 @@ public class ShoppingSurveyDiv2 {
 
         // ----- test 0 -----
         p0 = 5;
-        p1 = new int[] {3,3};
+        p1 = new int[] {3, 3};
         p2 = 1;
         all_right = KawigiEdit_RunTest(0, p0, p1, true, p2) && all_right;
         // ------------------
@@ -84,21 +84,21 @@ public class ShoppingSurveyDiv2 {
 
         // ----- test 2 -----
         p0 = 10;
-        p1 = new int[] {9,9,9,9,9};
+        p1 = new int[] {9, 9, 9, 9, 9};
         p2 = 5;
         all_right = KawigiEdit_RunTest(2, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 3 -----
         p0 = 7;
-        p1 = new int[] {1,2,3};
+        p1 = new int[] {1, 2, 3};
         p2 = 0;
         all_right = KawigiEdit_RunTest(3, p0, p1, true, p2) && all_right;
         // ------------------
 
         // ----- test 4 -----
         p0 = 5;
-        p1 = new int[] {3,3,3};
+        p1 = new int[] {3, 3, 3};
         p2 = 0;
         all_right = KawigiEdit_RunTest(4, p0, p1, true, p2) && all_right;
         // ------------------

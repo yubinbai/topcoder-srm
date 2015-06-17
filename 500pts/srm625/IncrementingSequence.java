@@ -14,6 +14,7 @@ public class IncrementingSequence {
         // O ( n * nlog_n )
         for (int i = 0; i < A.length; i++) {
             if (A[i] < temp[i]) {
+                // Greedy!
                 // definitely need to increase it since we cannot have A[i] < i + 1
                 while (A[i] < temp[i]) {
                     A[i] += k;

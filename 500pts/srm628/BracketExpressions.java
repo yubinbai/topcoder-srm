@@ -22,6 +22,7 @@ public class BracketExpressions {
             } else if ( c == 'X' ) {
                 char[] temp = {'{', '}', '[', ']', '(', ')'};
                 for (char cc : temp) {
+                    // backtracking
                     expression[i] = cc;
                     Stack<Character> backup = new Stack<Character>();
                     backup.addAll(st);

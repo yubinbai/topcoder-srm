@@ -20,7 +20,7 @@ public class CatAndRat {
 
         time = System.currentTimeMillis();
         answer = new CatAndRat().getTime(10, 1, 1, 1);
-        System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
+        System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = -1.0D;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
@@ -34,7 +34,7 @@ public class CatAndRat {
         System.out.println();
         time = System.currentTimeMillis();
         answer = new CatAndRat().getTime(10, 1, 1, 2);
-        System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
+        System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = 1.0D;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
@@ -48,7 +48,7 @@ public class CatAndRat {
         System.out.println();
         time = System.currentTimeMillis();
         answer = new CatAndRat().getTime(10, 1, 2, 1);
-        System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
+        System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = -1.0D;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
@@ -62,7 +62,7 @@ public class CatAndRat {
         System.out.println();
         time = System.currentTimeMillis();
         answer = new CatAndRat().getTime(1000, 1000, 1, 1000);
-        System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
+        System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = 1.001001001001001D;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);
@@ -76,7 +76,7 @@ public class CatAndRat {
         System.out.println();
         time = System.currentTimeMillis();
         answer = new CatAndRat().getTime(1, 1000, 1, 2);
-        System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
+        System.out.println("Time: " + (System.currentTimeMillis() - time) / 1000.0 + " seconds");
         desiredAnswer = 3.141592653589793D;
         System.out.println("Your answer:");
         System.out.println("\t" + answer);

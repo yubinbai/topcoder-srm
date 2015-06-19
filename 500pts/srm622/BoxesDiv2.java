@@ -6,18 +6,18 @@ import java.math.*;
 
 public class BoxesDiv2 {
     public int findSize(int[] candyCounts) {
-        int n = candyCounts.length;
-        int[] c = new int[n];
-        for (int i = 0; i < n; ++i) {
-            c[i] = 1;
-            while (c[i] < candyCounts[i]) c[i] <<= 1;
+        PriorityQueue<Integer> q = new PriorityQueue<Integer>();
+        for (int count : candyCounts) {
+            int c = 1;
+            while ( c < count ) c <<= 1;
+            q.add(c);
         }
-        Arrays.sort(c);
-        for (int i = 1; i < n; ++i) {
-            c[i] = 2 * Math.max(c[i-1], c[i]);
-            Arrays.sort(c, i, n);
+        while (q.size() > 1) {
+            int c1 = q.poll();
+            int c2 = q.poll();
+            q.add(2 * Math.max(c1, c2));
         }
-        return c[n-1];
+        return q.poll();
     }
 
     // BEGIN KAWIGIEDIT TESTING

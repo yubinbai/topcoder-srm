@@ -71,31 +71,31 @@ public class NumbersChallenge {
         int p1;
 
         // ----- test 0 -----
-        p0 = new int[] {5,1,2};
+        p0 = new int[] {5, 1, 2};
         p1 = 4;
         all_right = KawigiEdit_RunTest(0, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 1 -----
-        p0 = new int[] {2,1,4};
+        p0 = new int[] {2, 1, 4};
         p1 = 8;
         all_right = KawigiEdit_RunTest(1, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 2 -----
-        p0 = new int[] {2,1,2,7};
+        p0 = new int[] {2, 1, 2, 7};
         p1 = 6;
         all_right = KawigiEdit_RunTest(2, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 3 -----
-        p0 = new int[] {94512,2,87654,81316,6,5,6,37151,6,139,1,36,307,1,377,101,8,37,58,1};
+        p0 = new int[] {94512, 2, 87654, 81316, 6, 5, 6, 37151, 6, 139, 1, 36, 307, 1, 377, 101, 8, 37, 58, 1};
         p1 = 1092;
         all_right = KawigiEdit_RunTest(3, p0, true, p1) && all_right;
         // ------------------
 
         // ----- test 4 -----
-        p0 = new int[] {883,66392,3531,28257,1,14131,57,1,25,88474,4,1,110,6,1769,220,442,7064,7,13};
+        p0 = new int[] {883, 66392, 3531, 28257, 1, 14131, 57, 1, 25, 88474, 4, 1, 110, 6, 1769, 220, 442, 7064, 7, 13};
         p1 = 56523;
         all_right = KawigiEdit_RunTest(4, p0, true, p1) && all_right;
         // ------------------
